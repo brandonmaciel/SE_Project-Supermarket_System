@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Bruno Gemini",
+    "card_no": "1234 5678 8765 4321",
+    "cvv": 123,
+    "exp_date": "11/2025",
+    "zip_code": "79401",
+    "pin": 6969,
+    "balance": 3894.30
+  },
+  {
+    "name": "Isaac Ling",
+    "card_no": "8765 4321 1234 56789",
+    "cvv": 321,
+    "exp_date": "12/2025",
+    "zip_code": "79401",
+    "pin": 4200,
+    "balance": 420.69
+  },
+  {
+    "name": "Jakob Lee",
+    "card_no": "8359 2047 1092 2345",
+    "cvv": 358,
+    "exp_date": "07/2025",
+    "zip_code": "79401",
+    "pin": 1234,
+    "balance": 290835.90
+  },
+  {
+    "name": "Jeny Lenny",
+    "card_no": "3534 2057 8234 2408",
+    "cvv": 484,
+    "exp_date": "10/2025",
+    "zip_code": "79401",
+    "pin": 1999,
+    "balance": 123456789.10
+  }
+]
