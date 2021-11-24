@@ -1,0 +1,30 @@
+[
+  {
+    "member_name": "Bruno Gemini",
+    "phone_num": "(806) 123-4567",
+    "member_pin": 1234,
+    "credit_points": 25,
+    "orders_id": [1,5]
+  },
+  {
+    "member_name": "Isaac Ling",
+    "phone_num": "(806) 321-7654",
+    "member_pin": 4200,
+    "credit_points": 215,
+    "orders_id": [2]
+  },
+  {
+    "member_name": "Jakob Lee",
+    "phone_num": "(806) 765-4321",
+    "member_pin": 1234,
+    "credit_points": 10,
+    "orders_id": [3]
+  },
+  {
+    "member_name": "Jeny Henny",
+    "phone_num": "(806) 567-1234",
+    "member_pin": 1999,
+    "credit_points": 22,
+    "orders_id": [4]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "message": "Item 90 - Avocado, is below threshold.",
+    "order_date": "11/23/2021",
+    "item_id": 90,
+    "quantity_ordered": 85
+  },
+  {
+    "message": "Item 65 - Flour, is below threshold.",
+    "order_date": "11/23/2021",
+    "item_id": 65,
+    "quantity_ordered": 40
+  },
+  {
+    "message": "Item 35 - Beef, is below threshold.",
+    "order_date": "11/23/2021",
+    "item_id": 35,
+    "quantity_ordered": 45
+  },
+  {
+    "message": "Item 28 - Eggs, is below threshold.",
+    "order_date": "11/23/2021",
+    "item_id": 28,
+    "quantity_ordered": 50
+  }
+]
