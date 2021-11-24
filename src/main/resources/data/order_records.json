@@ -1,0 +1,111 @@
+[
+  {
+    "order_id": 1,
+    "order_date": "11/10/2021",
+    "order_time": "9:10am",
+    "total": 7.45,
+    "total_tax": 0.57,
+    "items": [
+      {
+        "item_id": 75,
+        "item_name": "jalapeno",
+        "item_description": "Premium, spicy hot, jalapeno imported from Mexico.",
+        "item_weight": 0.05,
+        "item_price": 0.19,
+        "quantity": 10
+      },
+      {
+        "item_id": 55,
+        "item_name": "rice",
+        "item_description": "White rice from Japan.",
+        "item_weight": 1.5,
+        "item_price": 2.49,
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "order_id": 2,
+    "order_date": "11/10/2021",
+    "order_time": "11:45am",
+    "total": 18.77,
+    "total_tax": 1.43,
+    "items": [
+      {
+        "item_id": 45,
+        "item_name": "milk",
+        "item_description": "2% Reduced Fat Milk.",
+        "item_weight": 2.0,
+        "item_price": 3.49,
+        "quantity": 2
+      },
+      {
+        "item_id": 12,
+        "item_name": "bread",
+        "item_description": "Whole wheat bread.",
+        "item_weight": 1.0,
+        "item_price": 2.79,
+        "quantity": 3
+      },
+      {
+        "item_id": 28,
+        "item_name": "eggs",
+        "item_description": "Non-gmo eggs, chickens are cage-free.",
+        "item_weight": 2.0,
+        "item_price": 1.99,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "order_id": 3,
+    "order_date": "11/15/2021",
+    "order_time": "4:10pm",
+    "total": 42.19,
+    "total_tax": 3.22,
+    "items": [
+      {
+        "item_id": 35,
+        "item_name": "beef",
+        "item_description": "Our cows are non-gmo and are treated humanely.",
+        "item_weight": 7.5,
+        "item_price": 12.99,
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "order_id": 4,
+    "order_date": "11/18/2021",
+    "order_time": "2:35pm",
+    "total": 34.10,
+    "total_tax": 2.60,
+    "items": [
+      {
+        "item_id": 90,
+        "item_name": "avocado",
+        "item_description": "Avocados from Mexico.",
+        "item_weight": 0.15,
+        "item_price": 0.70,
+        "quantity": 45
+      }
+    ]
+  },
+  {
+    "order_id": 5,
+    "order_date": "11/19/2021",
+    "order_time": "8:15pm",
+    "total": 41.60,
+    "total_tax": 3.17,
+    "items": [
+      {
+        "item_id": 85,
+        "item_name": "pasta",
+        "item_description": "Whole wheat pasta.",
+        "item_weight": 0.3,
+        "item_price": 5.49,
+        "quantity": 7
+      }
+    ]
+  }
+]
