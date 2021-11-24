@@ -1,16 +1,18 @@
 package com.example.se_projectsupermarket_system;
 
-public class checkout_orders {
+import java.util.List;
+
+public class Orders {
 
     private int id;
     private String date;
     private String time;
     private double total;
     private double total_tax;
-    private Items items; //Bulk & threshold fields will be empty.
+    private List<OrderItem> items; //Bulk & threshold fields will be empty.
 
-    public checkout_orders(int order_id, String order_date, String order_time,
-                           double order_total, double order_total_tax, Items order_items) {
+    public Orders(int order_id, String order_date, String order_time,
+                  double order_total, double order_total_tax, List<OrderItem> order_items) {
         id = order_id;
         date = order_date;
         time = order_time;
@@ -60,11 +62,11 @@ public class checkout_orders {
         this.total_tax = total_tax;
     }
 
-    public Items getItems() {
+    public List<OrderItem> getItems() {
         return items;
     }
 
-    public void setItems(Items items) {
+    public void setItems(List<OrderItem> items) {
         this.items = items;
     }
 }

@@ -6,11 +6,11 @@ public class MembersAccount {
     private String phone_num;
     private int pin;
     private int credit_points;
-    private checkout_orders orders; //Orders as list of object Orders or list of order_ID ints,
+    private Orders orders; //Orders as list of object Orders or list of order_ID ints,
                             // I think it's better to have list of Objects???
 
     public MembersAccount(String customer_name, String customer_phone_num, int customer_pin,
-                          int customer_points, checkout_orders customer_orders) {
+                          int customer_points, Orders customer_orders) {
         name = customer_name;
         phone_num = customer_phone_num;
         pin = customer_pin;
@@ -50,11 +50,11 @@ public class MembersAccount {
         this.credit_points = credit_points;
     }
 
-    public checkout_orders getOrders() {
+    public Orders getOrders() {
         return orders;
     }
 
-    public void setOrders(checkout_orders orders) {
+    public void setOrders(Orders orders) {
         this.orders = orders;
     }
 }

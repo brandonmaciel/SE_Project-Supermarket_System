@@ -1,6 +1,6 @@
 package com.example.se_projectsupermarket_system;
 
-public class Items {
+public class Item {
 
     private int id;
     private String name;
@@ -13,8 +13,8 @@ public class Items {
     private double weight;  //In Lbs
 
 
-    public Items(int item_id, String item_name, String item_description, String item_discount, double item_price,
-                 int item_quantity, int item_threshold, boolean item_bulk, double item_weight){
+    public Item(int item_id, String item_name, String item_description, String item_discount, double item_price,
+                int item_quantity, int item_threshold, boolean item_bulk, double item_weight){
         id = item_id;
         name = item_name;
         description = item_description;
