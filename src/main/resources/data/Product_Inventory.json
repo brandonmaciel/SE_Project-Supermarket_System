@@ -1,0 +1,123 @@
+[
+  {
+    "item_id": 12,
+    "item_name": "bread",
+    "item_description": "Whole wheat bread.",
+    "item_price": 2.79,
+    "quantity": 40,
+    "threshold": 20,
+    "bulk_boolean": false,
+    "item_weight": 1.0,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 18,
+    "item_name": "alfredo sauce",
+    "item_description": "Delicious alfredo sauce.",
+    "item_price": 3.79,
+    "quantity": 55,
+    "threshold": 20,
+    "bulk_boolean": false,
+    "item_weight": 0.4,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 28,
+    "item_name": "eggs",
+    "item_description": "Non-gmo eggs, chickens are cage-free.",
+    "item_price": 1.99,
+    "quantity": 50,
+    "threshold": 30,
+    "bulk_boolean": false,
+    "item_weight": 2.0,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 34,
+    "item_name": "chicken",
+    "item_description": "Our chickens are non-gmo and are treated humanely.",
+    "item_price": 4.99,
+    "quantity": 40,
+    "threshold": 15,
+    "bulk_boolean": true,
+    "item_weight": 6.5,
+    "discount": "Price is now $4.99 ($1 off)."
+  },
+  {
+    "item_id": 35,
+    "item_name": "beef",
+    "item_description": "Our cows are non-gmo and are treated humanely.",
+    "item_price": 12.99,
+    "quantity": 60,
+    "threshold": 30,
+    "bulk_boolean": true,
+    "item_weight": 7.5,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 45,
+    "item_name": "milk",
+    "item_description": "2% Reduced Fat Milk.",
+    "item_price": 3.49,
+    "quantity": 80,
+    "threshold": 40,
+    "bulk_boolean": false,
+    "item_weight": 2.0,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 55,
+    "item_name": "rice",
+    "item_description": "White rice from Japan.",
+    "item_price": 2.49,
+    "quantity": 50,
+    "threshold": 30,
+    "bulk_boolean": false,
+    "item_weight": 1.5,
+    "discount": "Price is now $2.49 ($0.50 off)."
+  },
+  {
+    "item_id": 65,
+    "item_name": "flour",
+    "item_description": "Bread flour.",
+    "item_price": 3.49,
+    "quantity": 40,
+    "threshold": 25,
+    "bulk_boolean": false,
+    "item_weight": 3.0,
+    "discount": "Price is now $3.49 ($0.50 off)."
+  },
+  {
+    "item_id": 75,
+    "item_name": "jalapeno",
+    "item_description": "Premium, spicy hot, jalapeno imported from Mexico.",
+    "item_price": 0.19,
+    "quantity": 100,
+    "threshold": 60,
+    "bulk_boolean": true,
+    "item_weight": 0.05,
+    "discount": "No discount."
+  },
+  {
+    "item_id": 85,
+    "item_name": "pasta",
+    "item_description": "Whole wheat pasta.",
+    "item_price": 5.49,
+    "quantity": 75,
+    "threshold": 40,
+    "bulk_boolean": false,
+    "item_weight": 0.3,
+    "discount": "Price is now $5.49 ($0.50 off)."
+  },
+  {
+    "item_id": 90,
+    "item_name": "avocado",
+    "item_description": "Avocados from Mexico.",
+    "item_price": 0.70,
+    "quantity": 150,
+    "threshold": 70,
+    "bulk_boolean": false,
+    "item_weight": 0.15,
+    "discount": "No discount."
+  }
+]
