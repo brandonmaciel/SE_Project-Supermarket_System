@@ -2,20 +2,37 @@ package com.example.se_projectsupermarket_system;
 
 public class Items {
 
-    private String name;
     private int id;
+    private String name;
+    private String description;
+    private String discount;
     private double price;
     private int quantity;
-    private String description;
+    private int threshold;
+    private boolean bulk;
+    private double weight;  //In Lbs
 
-    public Items(String item_name, int item_id, double item_price, int item_quantity, String item_description){
-        name = item_name;
+
+    public Items(int item_id, String item_name, String item_description, String item_discount, double item_price,
+                 int item_quantity, int item_threshold, boolean item_bulk, double item_weight){
         id = item_id;
+        name = item_name;
+        description = item_description;
+        discount = item_discount;
         price = item_price;
         quantity = item_quantity;
-        description = item_description;
+        threshold = item_threshold;
+        bulk = item_bulk;
+        weight = item_weight;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -25,12 +42,20 @@ public class Items {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public double getPrice() {
@@ -49,11 +74,28 @@ public class Items {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public int getThreshold() {
+        return threshold;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
+
+    public boolean getBulk() {
+        return bulk;
+    }
+
+    public void setBulk(boolean bulk) {
+        this.bulk = bulk;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void seWeight(double weight) {
+        this.weight = weight;
+    }
+
 }
