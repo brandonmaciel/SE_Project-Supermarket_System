@@ -9,15 +9,17 @@ public class Orders {
     private String time;
     private double total;
     private double total_tax;
+    private boolean processed;
     private List<OrderItem> items; //Bulk & threshold fields will be empty.
 
     public Orders(int order_id, String order_date, String order_time,
-                  double order_total, double order_total_tax, List<OrderItem> order_items) {
+                  double order_total, double order_total_tax, boolean order_processed, List<OrderItem> order_items) {
         id = order_id;
         date = order_date;
         time = order_time;
         total = order_total;
         total_tax = order_total_tax;
+        processed = order_processed;
         items = order_items;
     }
 
@@ -60,6 +62,14 @@ public class Orders {
 
     public void setTotal_Tax(double total_tax) {
         this.total_tax = total_tax;
+    }
+
+    public boolean getProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(boolean processed) {
+        this.processed = processed;
     }
 
     public List<OrderItem> getItems() {
