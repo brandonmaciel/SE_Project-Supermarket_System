@@ -13,13 +13,13 @@ public class Orders {
     private List<OrderItem> items; //Bulk & threshold fields will be empty.
 
     public Orders(int order_id, String order_date, String order_time,
-                  double order_total, double order_total_tax, boolean order_processed, List<OrderItem> order_items) {
+                  double order_total, double order_total_tax, boolean processed, List<OrderItem> order_items) {
         id = order_id;
         date = order_date;
         time = order_time;
         total = order_total;
         total_tax = order_total_tax;
-        processed = order_processed;
+        this.processed = processed;
         items = order_items;
     }
 
