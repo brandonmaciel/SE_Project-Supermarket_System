@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -30,6 +32,8 @@ public class CheckoutOrderController {
     private double ItemCurrentTotal_value;
     private int ItemQuantity;
     private double BulkWeight;
+    private boolean paymentReady = false;
+
 
 
     @FXML
@@ -42,6 +46,10 @@ public class CheckoutOrderController {
     private Button SetQuantity;
     @FXML
     private Button SCALE;
+    @FXML
+    private Button ITEM_ID;
+    @FXML
+    private Button TOTAL;
     @FXML
     private Label ItemName;
     @FXML
@@ -56,6 +64,8 @@ public class CheckoutOrderController {
     private Label ItemCurrentTotal;
     @FXML
     private ImageView OrderCompleteOverlay;
+    @FXML
+    private Label PaymentNotReady;
 
 
     //Order Summary Labels
@@ -264,28 +274,48 @@ public class CheckoutOrderController {
                                         "\nTotal Price:"+"\t\t\t"+String.format("$ %,.2f", OrderTotal));
 
         OrderCompleteOverlay.setVisible(true);
+        PaymentNotReady.setVisible(true);
+        PaymentNotReady.setText("Ready For Payment!");
+        PaymentNotReady.setTextFill(Color.GREEN);
+    }
+
+
+
+
+
+
+    //***************************************************************************************
+    @FXML
+    protected void ItemIDHover(){
+        ITEM_ID.setTextFill(Color.GREEN);
+        ITEM_ID.setFont(new Font("Segoe UI Semibold",12));
+    }
+    @FXML
+    protected void ItemIDHoverExit(){
+        ITEM_ID.setTextFill(Color.BLACK);
+        ITEM_ID.setFont(new Font("Segoe UI Semibold",10));
     }
 
     //***************************************************************************************
     @FXML
-    protected void ReceiptStartUp(){
+    protected void TOTALhover(){
+        TOTAL.setTextFill(Color.GREEN);
+        TOTAL.setFont(new Font("Segoe UI Semibold",19));
+    }
+    @FXML
+    protected void TOTALhoverExit(){
+        TOTAL.setTextFill(Color.BLACK);
+        TOTAL.setFont(new Font("Segoe UI Semibold",17));
+    }
 
-
-        DateTimeFormatter Date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        DateTimeFormatter Time = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        OrderDate = Date.format(now);
-        OrderTime = Time.format(now);
-
-
-
-        CustomerOrderReceipt.appendText("Jaun's SuperMarket" +
-                "\nLubbock, TX 79416" +
-                "\n(806) 788-1588" +
-                "\n\n"+OrderDate+
-                "\n"+OrderTime+"\n");
-
+    //***************************************************************************************
+    @FXML
+    protected void MakePaymentHover(){
+        MakePaymentButton.setFont(new Font("Segoe UI Semibold",18));
+    }
+    @FXML
+    protected void MakePaymentHoverExit(){
+        MakePaymentButton.setFont(new Font("Segoe UI Semibold",17));
     }
 
     //***************************************************************************************
@@ -295,6 +325,12 @@ public class CheckoutOrderController {
 
     @FXML
     private void MakePaymentButtonAction() throws IOException {
+
+        if(paymentReady == false){
+            PaymentNotReady.setVisible(true);
+        }else{
+
+        }
         // get a handle to the stage
 
         //Stage stage = (Stage) MakePaymentButton.getScene().getWindow();
