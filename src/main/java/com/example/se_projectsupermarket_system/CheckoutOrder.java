@@ -21,6 +21,7 @@ public class CheckoutOrder extends Application {
 
     public static void main(String[] args) throws IOException{
 
+        Data.parseProductInventory();
 
         launch();
     }
