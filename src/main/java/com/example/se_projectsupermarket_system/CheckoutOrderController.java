@@ -31,13 +31,14 @@ public class CheckoutOrderController {
     @FXML
     private void MakePaymentButtonAction() throws IOException {
         // get a handle to the stage
-        Stage stage = (Stage) MakePaymentButton.getScene().getWindow();
-        Stage new_stage = (Stage) MakePaymentButton.getScene().getWindow();
+
+        //Stage stage = (Stage) MakePaymentButton.getScene().getWindow();
+        //Stage new_stage = (Stage) MakePaymentButton.getScene().getWindow();
         // Transition to Make Payment Scene
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cashier_view.fxml"));
-        Scene new_scene = new Scene(fxmlLoader.load(), 820, 740);
-        new_stage.setTitle("Make Payment!");
-        new_stage.setScene(new_scene);
-        new_stage.show();
+        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("cashier_view.fxml"));
+        //Scene scene = new Scene(fxmlLoader.load(), 820, 740);
+        //stage.setTitle("Cashier View");
+        //stage.setScene(scene);
+        //stage.show();
     }
 }
