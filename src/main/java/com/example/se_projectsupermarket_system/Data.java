@@ -20,12 +20,14 @@ public class Data {
 
     static List<Bank> bank = new ArrayList<>();
     static List<Orders> orders = new ArrayList<>();
+    static List<Item> items = new ArrayList<>();
 
     static int currentOrderIndex;
 
     public static void parseFiles() throws IOException {
         parseBankJSON();
         parseCheckoutOrders();
+        parseProductInventory();
 
         for(int index = 0; index < orders.size(); index++) {
             if(orders.get(index).getProcessed()) {
@@ -96,5 +98,32 @@ public class Data {
             orders.add(tmpOrder);
         }
     }
+
+
+    public static void parseProductInventory() throws IOException {
+
+        String jsonString = Files.readString(Path.of(productPath), StandardCharsets.US_ASCII);
+        JSONArray productsArray = new JSONArray(jsonString);
+
+        for(int i = 0; i < productsArray.length(); i++){
+
+            JSONObject tmpObj = productsArray.getJSONObject(i);
+
+            Item tmpItem = new Item(
+                    tmpObj.getInt("item_id"),
+                    tmpObj.getString("item_name"),
+                    tmpObj.getString("item_description"),
+                    tmpObj.getString("discount"),
+                    tmpObj.getDouble("item_price"),
+                    tmpObj.getInt("quantity"),
+                    tmpObj.getInt("threshold"),
+                    tmpObj.getBoolean("bulk_boolean"),
+                    tmpObj.getDouble("item_weight"));
+
+            items.add(tmpItem);
+        }
+    }
+
+
 
 }
