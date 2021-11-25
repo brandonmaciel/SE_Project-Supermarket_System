@@ -2,6 +2,7 @@ package com.example.se_projectsupermarket_system;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -25,20 +26,33 @@ public class CheckoutOrderController {
     private List<Item> productList = Data.items;
     private int currentOrderIndex = Data.currentOrderIndex;
 
-    private double ItemCurrentTotal_quantity;
+    private double ItemCurrentTotal_value;
     private int ItemQuantity;
+    private double BulkWeight;
     private double OrderTotal;
     private double OrderTotalTax;
-    private boolean Processed;
+
 
     @FXML
     private TextField EnteredItemID;
     @FXML
     private TextField EnteredItemQuantity;
     @FXML
+    private TextField EnteredBulkWeight;
+    @FXML
+    private Button SetQuantity;
+    @FXML
+    private Button SCALE;
+    @FXML
     private Label ItemName;
     @FXML
     private Label ItemDescription;
+    @FXML
+    private Label ItemBulk;
+    @FXML
+    private Label WeightSelected;
+    @FXML
+    private Label QuantitySelected;
     @FXML
     private Label ItemCurrentTotal;
 
@@ -96,8 +110,28 @@ public class CheckoutOrderController {
                 valid = true;
                 //Do the following if Item-ID valid
                 ItemName.setText(product.getName());
-                ItemDescription.setText(product.getDescription());
+                ItemDescription.setText(product.getDescription()+"\nWeight - "+product.getWeight()+"\nDiscount - "+product.getDiscount());
                 ItemCurrentTotal.setText("$ " + product.getPrice());
+
+                if(product.getBulk() == true){
+                    ItemBulk.setVisible(true);
+                    SCALE.setVisible(true);
+                    EnteredBulkWeight.setVisible(true);
+                    WeightSelected.setVisible(true);
+
+                    SetQuantity.setVisible(false);
+                    EnteredItemQuantity.setVisible(false);
+                    QuantitySelected.setVisible(false);
+                }else{
+                    ItemBulk.setVisible(false);
+                    SCALE.setVisible(false);
+                    EnteredBulkWeight.setVisible(false);
+                    WeightSelected.setVisible(false);
+
+                    SetQuantity.setVisible(true);
+                    EnteredItemQuantity.setVisible(true);
+                    QuantitySelected.setVisible(true);
+                }
 
                 //Hide last product image
                 switch (tempProduct.getId()) {
@@ -148,11 +182,36 @@ public class CheckoutOrderController {
     @FXML
     protected void onSetQuantity_click(){
         ItemQuantity = Integer.parseInt(EnteredItemQuantity.getText());
-        ItemCurrentTotal_quantity = ItemQuantity * tempProduct.getPrice();
+        ItemCurrentTotal_value = ItemQuantity * tempProduct.getPrice();
 
-        ItemCurrentTotal.setText("$ " + String.valueOf(ItemCurrentTotal_quantity));
+        QuantitySelected.setText("Quantity Selected - "+ItemQuantity);
+        ItemCurrentTotal.setText("$ " + String.format("%,.2f", ItemCurrentTotal_value));
     }
 
+    //***************************************************************************************
+    @FXML
+    protected void onSetWeight_click(){
+        BulkWeight = Double.parseDouble(EnteredBulkWeight.getText());
+        ItemCurrentTotal_value = (BulkWeight/tempProduct.getWeight()) * tempProduct.getPrice();
+
+        WeightSelected.setText("Weight Selected - "+BulkWeight);
+        ItemCurrentTotal.setText("$ " + String.format("%,.2f", ItemCurrentTotal_value));
+    }
+
+    //***************************************************************************************
+    @FXML
+    protected void onAddToOrder_click(){
+
+        if(tempProduct.getBulk()){
+            CustomerOrderReceipt.appendText(tempProduct.getName()+"\n   [ Weight ] - "+
+                                            BulkWeight+"\t\t\t\t$ "+String.format("%,.2f", ItemCurrentTotal_value)+"\n");
+        }else{
+            CustomerOrderReceipt.appendText(tempProduct.getName()+"\n   [ Quantity ] - "+
+                                            ItemQuantity+"\t\t\t\t$ "+String.format("%,.2f", ItemCurrentTotal_value)+"\n");
+        }
+
+
+    }
 
     //***************************************************************************************
     //Used to transition from CheckoutOrder to MakePayment

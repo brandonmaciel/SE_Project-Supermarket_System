@@ -62,7 +62,7 @@
             <Image url="@../../../img/ProductShowcase.png" />
          </image>
       </ImageView>
-      <Label fx:id="ItemDescription" alignment="TOP_LEFT" layoutX="879.0" layoutY="366.0" prefHeight="77.0" prefWidth="359.0" text="Item description body text" textFill="WHITE" wrapText="true">
+      <Label fx:id="ItemDescription" alignment="TOP_LEFT" layoutX="879.0" layoutY="366.0" prefHeight="104.0" prefWidth="359.0" text="Item description body text" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Segoe UI Light" size="17.0" />
          </font>
@@ -72,7 +72,7 @@
             <Font name="Segoe UI Semilight" size="12.0" />
          </font>
       </TextField>
-      <Button alignment="CENTER" layoutX="1176.0" layoutY="268.0" mnemonicParsing="false" onAction="#onSetQuantity_click" prefHeight="38.0" prefWidth="71.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="SET" textFill="WHITE" underline="true" wrapText="true">
+      <Button fx:id="SetQuantity" alignment="CENTER" layoutX="1176.0" layoutY="268.0" mnemonicParsing="false" onAction="#onSetQuantity_click" prefHeight="38.0" prefWidth="71.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="SET" textFill="WHITE" underline="true" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -82,7 +82,7 @@
             <Font name="Segoe UI Semibold Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="877.0" layoutY="468.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
+      <Button layoutX="877.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAddToOrder_click" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
          <font>
             <Font name="Segoe UI Light" size="25.0" />
          </font>
@@ -203,5 +203,29 @@
             </Label>
          </children>
       </Pane>
+      <Label fx:id="ItemBulk" layoutX="1064.0" layoutY="248.0" text="BULK ITEM:  enter weight" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="EnteredBulkWeight" layoutX="1064.0" layoutY="268.0" onAction="#onSetWeight_click" prefHeight="38.0" prefWidth="114.0" promptText="Enter Weight. . ." styleClass="transparent" stylesheets="@../../../styling/style.css" visible="false">
+         <font>
+            <Font name="Segoe UI Semilight" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="SCALE" alignment="CENTER" layoutX="1176.0" layoutY="268.0" mnemonicParsing="false" onAction="#onSetWeight_click" prefHeight="38.0" prefWidth="71.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="SCALE" textFill="WHITE" underline="true" visible="false" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="QuantitySelected" layoutX="1064.0" layoutY="312.0" prefHeight="17.0" prefWidth="178.0" text="Quantity Selected - 1" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="12.0" />
+         </font></Label>
+      <Label fx:id="WeightSelected" layoutX="1064.0" layoutY="312.0" prefHeight="17.0" prefWidth="178.0" text="Weight Selected - " textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Light" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
