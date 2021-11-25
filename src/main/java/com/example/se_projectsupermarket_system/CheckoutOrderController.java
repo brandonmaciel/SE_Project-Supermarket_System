@@ -1,36 +1,35 @@
 package com.example.se_projectsupermarket_system;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
-import java.io.File;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
 import java.net.URISyntaxException;
 import java.util.List;
 
 import java.io.IOException;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-
 
 
 public class CheckoutOrderController {
 
     private List<Item> productList = Data.items;
+
     private int currentOrderIndex = Data.currentOrderIndex;
+    private String OrderDate;
+    private String OrderTime;
+    private double OrderSubTotal = 0.00;
+    private double OrderTotalTax;
+    private double OrderTotal;
 
     private double ItemCurrentTotal_value;
     private int ItemQuantity;
     private double BulkWeight;
-    private double OrderTotal;
-    private double OrderTotalTax;
 
 
     @FXML
@@ -55,12 +54,23 @@ public class CheckoutOrderController {
     private Label QuantitySelected;
     @FXML
     private Label ItemCurrentTotal;
+    @FXML
+    private ImageView OrderCompleteOverlay;
+
+
+    //Order Summary Labels
+    @FXML
+    private Label subTotal;
+    @FXML
+    private Label totalTax;
+    @FXML
+    private Label orderTotal;
 
 
 
 
 
-    // Product Showcase
+    // Product Image Showcase
     @FXML
     private ImageView breadImg;
     @FXML
@@ -86,7 +96,7 @@ public class CheckoutOrderController {
 
 
 
-
+    // Our Three Displays
     @FXML
     private Label CustomerDisplay;
     @FXML
@@ -191,6 +201,7 @@ public class CheckoutOrderController {
     //***************************************************************************************
     @FXML
     protected void onSetWeight_click(){
+        ItemQuantity = 1;
         BulkWeight = Double.parseDouble(EnteredBulkWeight.getText());
         ItemCurrentTotal_value = (BulkWeight/tempProduct.getWeight()) * tempProduct.getPrice();
 
@@ -202,14 +213,78 @@ public class CheckoutOrderController {
     @FXML
     protected void onAddToOrder_click(){
 
+        //To Display to the three displays
         if(tempProduct.getBulk()){
             CustomerOrderReceipt.appendText(tempProduct.getName()+"\n   [ Weight ] - "+
                                             BulkWeight+"\t\t\t\t$ "+String.format("%,.2f", ItemCurrentTotal_value)+"\n");
+
+            CustomerDisplay.setText("$ "+String.format("%,.2f", ItemCurrentTotal_value)+
+                                    "\n"+tempProduct.getName()+" [Weight] - "+BulkWeight+" lbs"+
+                                    "\n\t"+tempProduct.getDescription()+
+                                    "\n\t"+tempProduct.getDiscount());
+            CashRegisterDisplay.setText("$ "+String.format("%,.2f", ItemCurrentTotal_value)+
+                                        "\n"+tempProduct.getName()+" [Weight] - "+BulkWeight+" lbs"+
+                                        "\n\t"+tempProduct.getDescription()+
+                                        "\n\t"+tempProduct.getDiscount());
         }else{
             CustomerOrderReceipt.appendText(tempProduct.getName()+"\n   [ Quantity ] - "+
                                             ItemQuantity+"\t\t\t\t$ "+String.format("%,.2f", ItemCurrentTotal_value)+"\n");
+
+            CustomerDisplay.setText("$ "+String.format("%,.2f", ItemCurrentTotal_value)+
+                                    "\n"+tempProduct.getName()+" [Quantity] - "+ItemQuantity+
+                                    "\n\t"+tempProduct.getDescription()+
+                                    "\n\t"+tempProduct.getDiscount());
+            CashRegisterDisplay.setText("$ "+String.format("%,.2f", ItemCurrentTotal_value)+
+                                        "\n"+tempProduct.getName()+" [Quantity] - "+ItemQuantity+
+                                        "\n\t"+tempProduct.getDescription()+
+                                        "\n\t"+tempProduct.getDiscount());
         }
 
+        //Setting Our Order Summary Labels
+        OrderSubTotal = OrderSubTotal + ItemCurrentTotal_value;
+        OrderTotalTax = (OrderSubTotal * 1.0825) - OrderSubTotal;
+
+        subTotal.setText(String.format("$ %,.2f", OrderSubTotal));
+        totalTax.setText(String.format("$ %,.2f", OrderTotalTax));
+    }
+
+    //***************************************************************************************
+    @FXML
+    protected void onTOTAL_click(){
+
+        OrderTotal = OrderSubTotal + OrderTotalTax;
+        orderTotal.setText(String.format("$ %,.2f", OrderTotal));
+
+        CustomerDisplay.setText("Total Price /w tax: \n"+String.format("\n$ %,.2f", OrderTotal));
+        CashRegisterDisplay.setText("Total Price /w tax: \n"+String.format("\n$ %,.2f", OrderTotal)+"\nOrder Completed! Till opening...");
+
+        CustomerOrderReceipt.appendText("\n****************************" +
+                                        "\nSubTotal: "+"\t\t\t"+String.format("$ %,.2f", OrderSubTotal)+
+                                        "\nTotal Tax:"+"\t\t\t"+String.format("$ %,.2f", OrderTotalTax)+
+                                        "\nTotal Price:"+"\t\t\t"+String.format("$ %,.2f", OrderTotal));
+
+        OrderCompleteOverlay.setVisible(true);
+    }
+
+    //***************************************************************************************
+    @FXML
+    protected void ReceiptStartUp(){
+
+
+        DateTimeFormatter Date = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter Time = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        OrderDate = Date.format(now);
+        OrderTime = Time.format(now);
+
+
+
+        CustomerOrderReceipt.appendText("Jaun's SuperMarket" +
+                "\nLubbock, TX 79416" +
+                "\n(806) 788-1588" +
+                "\n\n"+OrderDate+
+                "\n"+OrderTime+"\n");
 
     }
 
