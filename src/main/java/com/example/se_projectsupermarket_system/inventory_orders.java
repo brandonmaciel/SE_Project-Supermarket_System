@@ -7,8 +7,7 @@ public class inventory_orders {
     private int id;
     private int quantity;
 
-    public inventory_orders(String inventory_message, String order_date, int item_id,
-                            int item_quantity){
+    public inventory_orders(String inventory_message, String order_date, int item_id, int item_quantity){
         message = inventory_message;
         date = order_date;
         id = item_id;

@@ -6,8 +6,8 @@ public class MembersAccount {
     private String phone_num;
     private int pin;
     private int credit_points;
-    private Orders orders; //Orders as list of object Orders or list of order_ID ints,
-                            // I think it's better to have list of Objects???
+    private Orders orders;
+
 
     public MembersAccount(String customer_name, String customer_phone_num, int customer_pin,
                           int customer_points, Orders customer_orders) {
