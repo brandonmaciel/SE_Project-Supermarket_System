@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -13,14 +14,14 @@
             <Image url="@../../../img/checkoutOrderBackground.png" />
          </image>
       </ImageView>
-      <Button layoutX="150.0" layoutY="121.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="62.0" styleClass="search_ID_button" stylesheets="@../../../styling/style.css" text="ITEM-ID">
+      <Button layoutX="150.0" layoutY="121.0" mnemonicParsing="false" onAction="#onItemID_click" prefHeight="28.0" prefWidth="62.0" styleClass="search_ID_button" stylesheets="@../../../styling/style.css" text="ITEM-ID">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
          <effect>
             <DropShadow />
          </effect></Button>
-      <TextField layoutX="27.0" layoutY="124.0" prefHeight="28.0" prefWidth="123.0" promptText="Enter Item's ID" styleClass="transparent" stylesheets="@../../../styling/style.css" />
+      <TextField fx:id="EnteredItemID" alignment="CENTER" layoutX="27.0" layoutY="124.0" prefHeight="28.0" prefWidth="123.0" promptText="Enter Item's ID" styleClass="transparent" stylesheets="@../../../styling/style.css" />
       <Button alignment="CENTER" layoutX="309.0" layoutY="559.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="TOTAL">
          <font>
             <Font name="Segoe UI Semibold" size="17.0" />
@@ -53,8 +54,56 @@
                   <Font name="Segoe UI Light" size="17.0" />
                </font>
             </Label>
-            <TextArea prefHeight="352.0" prefWidth="423.0" />
+            <TextArea fx:id="CustomerOrderReceipt" prefHeight="352.0" prefWidth="423.0" />
          </children>
       </VBox>
+      <ImageView fitHeight="375.0" fitWidth="748.0" layoutX="508.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/ProductShowcase.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ItemName" layoutX="887.0" layoutY="228.0" text="Item" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="44.0" />
+         </font>
+      </Label>
+      <Label fx:id="ItemDescription" alignment="TOP_LEFT" layoutX="879.0" layoutY="366.0" prefHeight="77.0" prefWidth="359.0" text="ITem description body text" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Segoe UI Light" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="EnteredItemQuantity" layoutX="1064.0" layoutY="268.0" prefHeight="38.0" prefWidth="114.0" promptText="Enter Quantity. . ." styleClass="transparent" stylesheets="@../../../styling/style.css">
+         <font>
+            <Font name="Segoe UI Semilight" size="12.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" layoutX="1176.0" layoutY="268.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="SET" textFill="WHITE" underline="true" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="ItemCurrentTotal" alignment="CENTER" layoutX="1144.0" layoutY="483.0" prefHeight="38.0" prefWidth="82.0" text="\$ 0.00" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="877.0" layoutY="468.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="25.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="65.0" />
+         </padding>
+      </Button>
+      <ImageView fx:id="ProductImage" fitHeight="150.0" fitWidth="200.0" layoutX="602.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <effect>
+            <DropShadow />
+         </effect>
+         <image>
+            <Image url="@../../../img/flour.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>
