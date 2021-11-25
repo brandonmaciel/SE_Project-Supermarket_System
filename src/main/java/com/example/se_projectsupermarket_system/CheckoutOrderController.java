@@ -36,6 +36,7 @@ public class CheckoutOrderController {
     @FXML
     private Label ItemCurrentTotal;
 
+    // Product Showcase
     @FXML
     private ImageView breadImg;
     @FXML
@@ -70,41 +71,122 @@ public class CheckoutOrderController {
     private TextArea CustomerOrderReceipt;
 
 
+    Item tempLastProduct = new Item(-1, "N/a", "N/a", "n/a",
+            0, 0, 0, false, 0);
 
-
+    //***************************************************************************************
     @FXML
     protected void onItemID_click() throws URISyntaxException {
 
-
-        // Doesn't check for empty strings; that's above my pay grade
         boolean valid = false;
-        for (Item product: Data.items) {
-            if(product.getId() == (Integer.parseInt(EnteredItemID.getText()))){
+
+        for (Item product: productList) {
+            if (product.getId() == (Integer.parseInt(EnteredItemID.getText()))) {
+                valid = true;
+                
                 CustomerOrderReceipt.appendText("ITEM ID VALID\n");
                 //CustomerOrderReceipt.appendText(String.valueOf(currentOrderIndex));
-                valid = true;
 
                 //Do the following if Item-ID valid
-                //ProductImage.setVisible(false);
                 ItemName.setText(product.getName());
                 ItemDescription.setText(product.getDescription());
 
-                break;
+                //Hide last product image
+                switch (tempLastProduct.getId()) {
+                    case 12:
+                        breadImg.setVisible(false);
+                        break;
+                    case 18:
+                        alfredoSauceImg.setVisible(false);
+                        break;
+                    case 28:
+                        eggsImg.setVisible(false);
+                        break;
+                    case 34:
+                        chickenImg.setVisible(false);
+                        break;
+                    case 35:
+                        beefImg.setVisible(false);
+                        break;
+                    case 45:
+                        milkImg.setVisible(false);
+                        break;
+                    case 55:
+                        riceImg.setVisible(false);
+                        break;
+                    case 65:
+                        flourImg.setVisible(false);
+                        break;
+                    case 75:
+                        jalapenoImg.setVisible(false);
+                        break;
+                    case 85:
+                        pastaImg.setVisible(false);
+                        break;
+                    case 90:
+                        avocadoImg.setVisible(false);
+                        break;
+                    default:
+                        break;
+                }
+
+                //Show current product image
+                switch (product.getId()) {
+                    case 12:
+                        breadImg.setVisible(true);
+                        break;
+                    case 18:
+                        alfredoSauceImg.setVisible(true);
+                        break;
+                    case 28:
+                        eggsImg.setVisible(true);
+                        break;
+                    case 34:
+                        chickenImg.setVisible(true);
+                        break;
+                    case 35:
+                        beefImg.setVisible(true);
+                        break;
+                    case 45:
+                        milkImg.setVisible(true);
+                        break;
+                    case 55:
+                        riceImg.setVisible(true);
+                        break;
+                    case 65:
+                        flourImg.setVisible(true);
+                        break;
+                    case 75:
+                        jalapenoImg.setVisible(true);
+                        break;
+                    case 85:
+                        pastaImg.setVisible(true);
+                        break;
+                    case 90:
+                        avocadoImg.setVisible(true);
+                        break;
+                    default:
+                        break;
+                }
+
+                tempLastProduct = product;
             }
         }
 
         //Else Item-ID is invalid
-        if(valid == false){
+        if (valid == false) {
             CustomerOrderReceipt.appendText("ITEM ID nooooooooooooo\n");
         }
 
 
         return;
+        
     }
 
 
 
 
+    //***************************************************************************************
     //Used to transition from CheckoutOrder to MakePayment
     @FXML
     private javafx.scene.control.Button MakePaymentButton;
