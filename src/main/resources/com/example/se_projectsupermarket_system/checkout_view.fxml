@@ -98,12 +98,96 @@
             <Insets right="65.0" />
          </padding>
       </Button>
-      <ImageView fx:id="ProductImage" fitHeight="150.0" fitWidth="200.0" layoutX="602.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <effect>
-            <DropShadow />
-         </effect>
-         <image>
-            <Image url="@../../../img/flour.png" />
-         </image></ImageView>
+      <Pane layoutX="508.0" layoutY="183.0" prefHeight="229.0" prefWidth="351.0">
+         <children>
+            <ImageView fx:id="alfredoSauceImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/alfredo_sauce.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="avocadoImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/avocado.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="beefImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/beef.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="breadImg" fitHeight="150.0" fitWidth="200.0" layoutX="91.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <image>
+                  <Image url="@../../../img/bread.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chickenImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/chiken.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="eggsImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/eggs.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="flourImg" fitHeight="150.0" fitWidth="200.0" layoutX="91.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/flour.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="jalapenoImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/jalapeno.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="milkImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/milk.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="pastaImg" fitHeight="150.0" fitWidth="200.0" layoutX="91.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../../img/pasta.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="riceImg" fitHeight="150.0" fitWidth="158.0" layoutX="102.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <image>
+                  <Image url="@../../../img/rice.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </children>
 </AnchorPane>
