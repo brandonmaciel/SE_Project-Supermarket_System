@@ -219,13 +219,8 @@
             <Font name="Segoe UI Light" size="12.0" />
          </font>
       </Label>
-      <ImageView fx:id="OrderCompleteOverlay" fitHeight="553.0" fitWidth="816.0" layoutX="457.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../img/DoneOrderOverlay_v2.png" />
-         </image>
-      </ImageView>
       <Label fx:id="PaymentNotReady" alignment="CENTER" layoutX="285.0" layoutY="690.0" prefHeight="17.0" prefWidth="260.0" text="TOTAL must be calculated before Payment!!" textFill="RED" visible="false" wrapText="true" />
-      <Button fx:id="ADD_TO_ORDER" layoutX="877.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAddToOrder_click" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
+      <Button layoutX="877.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAddToOrder_click" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
          <font>
             <Font name="Segoe UI Light" size="25.0" />
          </font>
@@ -236,5 +231,10 @@
             <Insets right="65.0" />
          </padding>
       </Button>
+      <ImageView fx:id="OrderCompleteOverlay" fitHeight="553.0" fitWidth="816.0" layoutX="457.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../img/DoneOrderOverlay_v2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -27,6 +27,7 @@ public class Data {
     public static void parseFiles() throws IOException {
         parseBankJSON();
         parseCheckoutOrders();
+        parseProductInventory();
 
 
         for(int index = 0; index < orders.size(); index++) {
