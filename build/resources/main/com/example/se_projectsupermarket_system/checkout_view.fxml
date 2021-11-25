@@ -14,20 +14,23 @@
             <Image url="@../../../img/checkoutOrderBackground.png" />
          </image>
       </ImageView>
-      <Button layoutX="150.0" layoutY="121.0" mnemonicParsing="false" onAction="#onItemID_click" prefHeight="28.0" prefWidth="62.0" styleClass="search_ID_button" stylesheets="@../../../styling/style.css" text="ITEM-ID">
+      <Button fx:id="ITEM_ID" layoutX="150.0" layoutY="121.0" mnemonicParsing="false" onAction="#onItemID_click" onMouseEntered="#ItemIDHover" onMouseExited="#ItemIDHoverExit" prefHeight="28.0" prefWidth="62.0" styleClass="search_ID_button" stylesheets="@../../../styling/style.css" text="ITEM-ID">
          <font>
-            <Font name="Segoe UI Semibold" size="12.0" />
+            <Font name="Segoe UI Semibold" size="10.0" />
          </font>
          <effect>
             <DropShadow />
          </effect></Button>
       <TextField fx:id="EnteredItemID" alignment="CENTER" layoutX="27.0" layoutY="124.0" prefHeight="28.0" prefWidth="123.0" promptText="Enter Item's ID" styleClass="transparent" stylesheets="@../../../styling/style.css" />
-      <Button alignment="CENTER" layoutX="309.0" layoutY="559.0" mnemonicParsing="false" onAction="#onTOTAL_click" prefHeight="38.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="TOTAL">
+      <Button fx:id="TOTAL" alignment="TOP_CENTER" layoutX="309.0" layoutY="557.0" mnemonicParsing="false" onAction="#onTOTAL_click" onMouseEntered="#TOTALhover" onMouseExited="#TOTALhoverExit" prefHeight="27.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="TOTAL">
          <font>
             <Font name="Segoe UI Semibold" size="17.0" />
          </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Button>
-      <Button fx:id="MakePaymentButton" layoutX="309.0" layoutY="652.0" mnemonicParsing="false" onAction="#MakePaymentButtonAction" prefHeight="38.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Make Payment">
+      <Button fx:id="MakePaymentButton" layoutX="303.0" layoutY="651.0" mnemonicParsing="false" onAction="#MakePaymentButtonAction" onMouseEntered="#MakePaymentHover" onMouseExited="#MakePaymentHoverExit" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Make Payment">
          <font>
             <Font name="Segoe UI Semibold" size="17.0" />
          </font>
@@ -82,17 +85,6 @@
             <Font name="Segoe UI Semibold Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="877.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAddToOrder_click" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI Light" size="25.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets right="65.0" />
-         </padding>
-      </Button>
       <Pane layoutX="508.0" layoutY="183.0" prefHeight="229.0" prefWidth="351.0">
          <children>
             <ImageView fx:id="alfredoSauceImg" fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -227,10 +219,22 @@
             <Font name="Segoe UI Light" size="12.0" />
          </font>
       </Label>
-      <ImageView fitHeight="553.0" fitWidth="816.0" layoutX="457.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="OrderCompleteOverlay" fitHeight="553.0" fitWidth="816.0" layoutX="457.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../../img/DoneOrderOverlay.png" />
+            <Image url="@../../../img/DoneOrderOverlay_v2.png" />
          </image>
       </ImageView>
+      <Label fx:id="PaymentNotReady" alignment="CENTER" layoutX="285.0" layoutY="690.0" prefHeight="17.0" prefWidth="260.0" text="TOTAL must be calculated before Payment!!" textFill="RED" visible="false" wrapText="true" />
+      <Button fx:id="ADD_TO_ORDER" layoutX="877.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAddToOrder_click" prefHeight="71.0" prefWidth="359.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Add to Order!" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="25.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="65.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>
