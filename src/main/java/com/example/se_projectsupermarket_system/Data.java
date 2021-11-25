@@ -21,6 +21,20 @@ public class Data {
     static List<Bank> bank = new ArrayList<>();
     static List<Orders> orders = new ArrayList<>();
 
+    static int currentOrderIndex;
+
+    public static void parseFiles() throws IOException {
+        parseBankJSON();
+        parseCheckoutOrders();
+
+        for(int index = 0; index < orders.size(); index++) {
+            if(orders.get(index).getProcessed()) {
+                currentOrderIndex = index;
+                break;
+            }
+        }
+    }
+
     public static void parseBankJSON() throws IOException {
 
         String jsonString = Files.readString(Path.of(bankPath), StandardCharsets.US_ASCII);
@@ -46,12 +60,12 @@ public class Data {
     public static void parseCheckoutOrders() throws IOException {
 
         OrderItem tmpItem;
-        List<OrderItem> orderItems = new ArrayList<>();
 
         String jsonString = Files.readString(Path.of(Data.checkoutPath), StandardCharsets.US_ASCII);
         JSONArray ordersArray = new JSONArray(jsonString);
 
         for(int i = 0; i < ordersArray.length(); i++) {
+            List<OrderItem> orderItems = new ArrayList<>();
 
             JSONObject tmpOrderObj = ordersArray.getJSONObject(i);
             JSONArray itemsArray = new JSONArray(tmpOrderObj.getJSONArray("items"));
@@ -76,6 +90,7 @@ public class Data {
                     tmpOrderObj.getString("order_time"),
                     tmpOrderObj.getDouble("total"),
                     tmpOrderObj.getDouble("total_tax"),
+                    tmpOrderObj.getBoolean("processed"),
                     orderItems);
 
             orders.add(tmpOrder);

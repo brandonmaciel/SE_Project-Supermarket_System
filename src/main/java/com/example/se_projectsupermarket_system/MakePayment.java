@@ -5,15 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.*;
 
 public class MakePayment extends Application {
 
@@ -28,8 +20,8 @@ public class MakePayment extends Application {
 
     public static void main(String[] args) throws IOException {
 
+        Data.parseFiles();
 
-
-//        launch();
+        launch();
     }
 }
