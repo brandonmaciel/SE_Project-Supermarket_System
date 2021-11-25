@@ -25,6 +25,12 @@ public class CheckoutOrderController {
     private List<Item> productList = Data.items;
     private int currentOrderIndex = Data.currentOrderIndex;
 
+    private double ItemCurrentTotal_quantity;
+    private int ItemQuantity;
+    private double OrderTotal;
+    private double OrderTotalTax;
+    private boolean Processed;
+
     @FXML
     private TextField EnteredItemID;
     @FXML
@@ -35,6 +41,10 @@ public class CheckoutOrderController {
     private Label ItemDescription;
     @FXML
     private Label ItemCurrentTotal;
+
+
+
+
 
     // Product Showcase
     @FXML
@@ -64,126 +74,84 @@ public class CheckoutOrderController {
 
 
     @FXML
-    private TextArea CustomerDisplay;
+    private Label CustomerDisplay;
     @FXML
-    private TextArea CashRegisterDisplay;
+    private Label CashRegisterDisplay;
     @FXML
     private TextArea CustomerOrderReceipt;
 
 
-    Item tempLastProduct = new Item(-1, "N/a", "N/a", "n/a",
+    private Item tempProduct = new Item(-1, "N/a", "N/a", "n/a",
             0, 0, 0, false, 0);
+
 
     //***************************************************************************************
     @FXML
     protected void onItemID_click() throws URISyntaxException {
 
         boolean valid = false;
-
         for (Item product: productList) {
             if (product.getId() == (Integer.parseInt(EnteredItemID.getText()))) {
-                valid = true;
-                
-                CustomerOrderReceipt.appendText("ITEM ID VALID\n");
-                //CustomerOrderReceipt.appendText(String.valueOf(currentOrderIndex));
 
+                valid = true;
                 //Do the following if Item-ID valid
                 ItemName.setText(product.getName());
                 ItemDescription.setText(product.getDescription());
+                ItemCurrentTotal.setText("$ " + product.getPrice());
 
                 //Hide last product image
-                switch (tempLastProduct.getId()) {
-                    case 12:
-                        breadImg.setVisible(false);
-                        break;
-                    case 18:
-                        alfredoSauceImg.setVisible(false);
-                        break;
-                    case 28:
-                        eggsImg.setVisible(false);
-                        break;
-                    case 34:
-                        chickenImg.setVisible(false);
-                        break;
-                    case 35:
-                        beefImg.setVisible(false);
-                        break;
-                    case 45:
-                        milkImg.setVisible(false);
-                        break;
-                    case 55:
-                        riceImg.setVisible(false);
-                        break;
-                    case 65:
-                        flourImg.setVisible(false);
-                        break;
-                    case 75:
-                        jalapenoImg.setVisible(false);
-                        break;
-                    case 85:
-                        pastaImg.setVisible(false);
-                        break;
-                    case 90:
-                        avocadoImg.setVisible(false);
-                        break;
-                    default:
-                        break;
+                switch (tempProduct.getId()) {
+                    case 12 -> breadImg.setVisible(false);
+                    case 18 -> alfredoSauceImg.setVisible(false);
+                    case 28 -> eggsImg.setVisible(false);
+                    case 34 -> chickenImg.setVisible(false);
+                    case 35 -> beefImg.setVisible(false);
+                    case 45 -> milkImg.setVisible(false);
+                    case 55 -> riceImg.setVisible(false);
+                    case 65 -> flourImg.setVisible(false);
+                    case 75 -> jalapenoImg.setVisible(false);
+                    case 85 -> pastaImg.setVisible(false);
+                    case 90 -> avocadoImg.setVisible(false);
+                    default -> {
+                    }
                 }
 
                 //Show current product image
                 switch (product.getId()) {
-                    case 12:
-                        breadImg.setVisible(true);
-                        break;
-                    case 18:
-                        alfredoSauceImg.setVisible(true);
-                        break;
-                    case 28:
-                        eggsImg.setVisible(true);
-                        break;
-                    case 34:
-                        chickenImg.setVisible(true);
-                        break;
-                    case 35:
-                        beefImg.setVisible(true);
-                        break;
-                    case 45:
-                        milkImg.setVisible(true);
-                        break;
-                    case 55:
-                        riceImg.setVisible(true);
-                        break;
-                    case 65:
-                        flourImg.setVisible(true);
-                        break;
-                    case 75:
-                        jalapenoImg.setVisible(true);
-                        break;
-                    case 85:
-                        pastaImg.setVisible(true);
-                        break;
-                    case 90:
-                        avocadoImg.setVisible(true);
-                        break;
-                    default:
-                        break;
+                    case 12 -> breadImg.setVisible(true);
+                    case 18 -> alfredoSauceImg.setVisible(true);
+                    case 28 -> eggsImg.setVisible(true);
+                    case 34 -> chickenImg.setVisible(true);
+                    case 35 -> beefImg.setVisible(true);
+                    case 45 -> milkImg.setVisible(true);
+                    case 55 -> riceImg.setVisible(true);
+                    case 65 -> flourImg.setVisible(true);
+                    case 75 -> jalapenoImg.setVisible(true);
+                    case 85 -> pastaImg.setVisible(true);
+                    case 90 -> avocadoImg.setVisible(true);
+                    default -> {
+                    }
                 }
 
-                tempLastProduct = product;
+                tempProduct = product;
             }
         }
 
         //Else Item-ID is invalid
-        if (valid == false) {
-            CustomerOrderReceipt.appendText("ITEM ID nooooooooooooo\n");
+        if (!valid) {
+            CustomerDisplay.setText("...");
+            CashRegisterDisplay.setText("Invalid Item ID - "+EnteredItemID.getText()+"\nEnter another identification number...");
         }
-
-
-        return;
-        
     }
 
+    //***************************************************************************************
+    @FXML
+    protected void onSetQuantity_click(){
+        ItemQuantity = Integer.parseInt(EnteredItemQuantity.getText());
+        ItemCurrentTotal_quantity = ItemQuantity * tempProduct.getPrice();
 
+        ItemCurrentTotal.setText("$ " + String.valueOf(ItemCurrentTotal_quantity));
+    }
 
 
     //***************************************************************************************
