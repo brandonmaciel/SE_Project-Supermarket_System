@@ -13,18 +13,21 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.io.IOException;
 
-
+//*************************************************************************
 public class CheckoutOrderController {
 
     private List<Item> productList = Data.items;
+    private int currentOrderID;
+    private Orders tmpOrder;
+    private List<OrderItem> tmpOrderItems = new ArrayList<>();
 
-    private int currentOrderIndex = Data.currentOrderIndex;
-    private String OrderDate;
-    private String OrderTime;
+
+
     private double OrderSubTotal = 0.00;
     private double OrderTotalTax;
     private double OrderTotal;
@@ -130,7 +133,7 @@ public class CheckoutOrderController {
                 valid = true;
                 //Do the following if Item-ID valid
                 ItemName.setText(product.getName());
-                ItemDescription.setText(product.getDescription()+"\nWeight - "+product.getWeight()+"\nDiscount - "+product.getDiscount());
+                ItemDescription.setText(product.getDescription()+"\n    Weight - "+product.getWeight()+"\n    Discount - "+product.getDiscount());
                 ItemCurrentTotal.setText("$ " + product.getPrice());
 
                 if(product.getBulk() == true){
@@ -196,6 +199,32 @@ public class CheckoutOrderController {
             CustomerDisplay.setText("...");
             CashRegisterDisplay.setText("Invalid Item ID - "+EnteredItemID.getText()+"\nEnter another identification number...");
         }
+
+        //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
+        /*
+        for(Orders orders: Data.orders){
+            CustomerOrderReceipt.appendText("\n****************************** ORDER #: ");
+            CustomerOrderReceipt.appendText(orders.getId() +"\n");
+            CustomerOrderReceipt.appendText(orders.getDate()+"\n");
+            CustomerOrderReceipt.appendText(orders.getTime()+"\n");
+            CustomerOrderReceipt.appendText(orders.getTotal() +"\n");
+            CustomerOrderReceipt.appendText(orders.getTotal_Tax() +"\n");
+            CustomerOrderReceipt.appendText(orders.getProcessed() +"\n");
+
+            for(OrderItem items: orders.getItems()){
+                CustomerOrderReceipt.appendText("\n\t"+ items.getId());
+                CustomerOrderReceipt.appendText("\n\t"+items.getName());
+                CustomerOrderReceipt.appendText("\n\t"+items.getDescription());
+                CustomerOrderReceipt.appendText("\n\t"+items.getDiscount());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getWeight());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getPrice());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getQuantity());
+            }
+
+        }
+        */
+
+
     }
 
     //***************************************************************************************
@@ -256,6 +285,34 @@ public class CheckoutOrderController {
 
         subTotal.setText(String.format("$ %,.2f", OrderSubTotal));
         totalTax.setText(String.format("$ %,.2f", OrderTotalTax));
+
+        // Initializing our current selected Item & quantity to an OrderItem Object to add to List<OrderItem>
+        OrderItem tmpItem;
+
+        if(tempProduct.getBulk()){
+            //For bulk items; quantity is 1 while weight is different from product single weight
+            tmpItem = new OrderItem(
+                    tempProduct.getId(),
+                    tempProduct.getName(),
+                    tempProduct.getDescription(),
+                    tempProduct.getDiscount(),
+                    BulkWeight,
+                    tempProduct.getPrice(),
+                    1
+            );
+        }else{
+            tmpItem = new OrderItem(
+                    tempProduct.getId(),
+                    tempProduct.getName(),
+                    tempProduct.getDescription(),
+                    tempProduct.getDiscount(),
+                    tempProduct.getWeight(),
+                    tempProduct.getPrice(),
+                    ItemQuantity
+            );
+        }
+
+        tmpOrderItems.add(tmpItem);
     }
 
     //***************************************************************************************
@@ -268,7 +325,7 @@ public class CheckoutOrderController {
         CustomerDisplay.setText("Total Price /w tax: \n"+String.format("\n$ %,.2f", OrderTotal));
         CashRegisterDisplay.setText("Total Price /w tax: \n"+String.format("\n$ %,.2f", OrderTotal)+"\nOrder Completed! Till opening...");
 
-        CustomerOrderReceipt.appendText("\n****************************" +
+        CustomerOrderReceipt.appendText("\n*******************************************" +
                                         "\nSubTotal: "+"\t\t\t"+String.format("$ %,.2f", OrderSubTotal)+
                                         "\nTotal Tax:"+"\t\t\t"+String.format("$ %,.2f", OrderTotalTax)+
                                         "\nTotal Price:"+"\t\t\t"+String.format("$ %,.2f", OrderTotal));
@@ -277,6 +334,50 @@ public class CheckoutOrderController {
         PaymentNotReady.setVisible(true);
         PaymentNotReady.setText("Ready For Payment!");
         PaymentNotReady.setTextFill(Color.GREEN);
+
+
+
+        //Initializing our temp Orders object to add to Data.orders
+        currentOrderID = Data.orders.size() + 1;
+        DateTimeFormatter Date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter Time = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+
+        tmpOrder = new Orders(
+                currentOrderID,
+                Date.format(now),
+                Time.format(now),
+                OrderTotal,
+                OrderTotalTax,
+                false,
+                tmpOrderItems
+        );
+
+        Data.orders.add(tmpOrder);
+
+        //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
+        /*
+        for(Orders orders: Data.orders){
+            CustomerOrderReceipt.appendText("\n****************************** ORDER #: ");
+            CustomerOrderReceipt.appendText(orders.getId() +"\n");
+            CustomerOrderReceipt.appendText(orders.getDate()+"\n");
+            CustomerOrderReceipt.appendText(orders.getTime()+"\n");
+            CustomerOrderReceipt.appendText(orders.getTotal() +"\n");
+            CustomerOrderReceipt.appendText(orders.getTotal_Tax() +"\n");
+            CustomerOrderReceipt.appendText(orders.getProcessed() +"\n");
+
+            for(OrderItem items: orders.getItems()){
+                CustomerOrderReceipt.appendText("\n\t"+ items.getId());
+                CustomerOrderReceipt.appendText("\n\t"+items.getName());
+                CustomerOrderReceipt.appendText("\n\t"+items.getDescription());
+                CustomerOrderReceipt.appendText("\n\t"+items.getDiscount());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getWeight());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getPrice());
+                CustomerOrderReceipt.appendText("\n\t"+ items.getQuantity());
+            }
+        }
+
+         */
     }
 
 
@@ -318,6 +419,11 @@ public class CheckoutOrderController {
         MakePaymentButton.setFont(new Font("Segoe UI Semibold",17));
     }
 
+
+
+
+
+
     //***************************************************************************************
     //Used to transition from CheckoutOrder to MakePayment
     @FXML
@@ -330,6 +436,12 @@ public class CheckoutOrderController {
             PaymentNotReady.setVisible(true);
         }else{
 
+            //Erase Locally data for next checkout order
+            tmpOrderItems.clear();
+            OrderTotal = 0.00;
+            OrderTotalTax = 0.00;
+            OrderSubTotal = 0.00;
+            paymentReady = false;
         }
         // get a handle to the stage
 
