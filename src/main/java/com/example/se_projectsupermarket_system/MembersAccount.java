@@ -8,16 +8,16 @@ public class MembersAccount {
     private String phone_num;
     private int pin;
     private int credit_points;
-    private List<Orders> orders;
+    private List<Integer> orders_id; //List of member's orders' ID, parse through Data.orders
 
 
     public MembersAccount(String customer_name, String customer_phone_num, int customer_pin,
-                          int customer_points, List<Orders> customer_orders) {
+                          int customer_points, List<Integer> customer_orders_id) {
         name = customer_name;
         phone_num = customer_phone_num;
         pin = customer_pin;
         credit_points = customer_points;
-        orders = customer_orders;
+        orders_id = customer_orders_id;
     }
 
     public String getName() {
@@ -52,11 +52,11 @@ public class MembersAccount {
         this.credit_points = credit_points;
     }
 
-    public List<Orders> getOrders() {
-        return orders;
+    public List<Integer> getOrders() {
+        return orders_id;
     }
 
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
+    public void setOrders(List<Integer> orders_id) {
+        this.orders_id = orders_id;
     }
 }

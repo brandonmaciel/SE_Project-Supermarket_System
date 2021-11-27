@@ -20,13 +20,16 @@ public class Data {
 
     static List<Bank> bank = new ArrayList<>();
     static List<Orders> orders = new ArrayList<>();
+    static List<MembersAccount> members = new ArrayList<>();
     static List<Item> items = new ArrayList<>();
 
     static int currentOrderIndex;
 
+    //***************************************************************************************
     public static void parseFiles() throws IOException {
         parseBankJSON();
         parseCheckoutOrders();
+        parseMembershipAccounts();
         parseProductInventory();
 
 
@@ -38,6 +41,7 @@ public class Data {
         }
     }
 
+    //***************************************************************************************
     public static void parseBankJSON() throws IOException {
 
         String jsonString = Files.readString(Path.of(bankPath), StandardCharsets.US_ASCII);
@@ -60,6 +64,7 @@ public class Data {
         }
     }
 
+    //***************************************************************************************
     public static void parseCheckoutOrders() throws IOException {
 
         OrderItem tmpItem;
@@ -100,7 +105,39 @@ public class Data {
         }
     }
 
+    //***************************************************************************************
+    public static void parseMembershipAccounts() throws IOException{
 
+        String jsonString = Files.readString(Path.of(Data.membershipPath), StandardCharsets.US_ASCII);
+        JSONArray membersArray = new JSONArray(jsonString);
+
+        for(int i = 0; i < membersArray.length(); i++){
+            List<Integer> ordersID = new ArrayList<>();
+
+            JSONObject tmpMemberObj = membersArray.getJSONObject(i);
+            JSONArray ordersIDArray = new JSONArray(tmpMemberObj.getJSONArray("orders_id"));
+
+            //Add orders ID to List<integer> OrdersID
+            for(int j = 0; j < ordersIDArray.length(); j++){
+                int tmpOrderID;
+                tmpOrderID = ordersIDArray.getInt(j);
+
+                ordersID.add(tmpOrderID);
+            }
+
+            // Create tmpMember and add to List<MembersAccount> members of Data.members
+            MembersAccount tmpMember = new MembersAccount(
+                    tmpMemberObj.getString("member_name"),
+                    tmpMemberObj.getString("phone_num"),
+                    tmpMemberObj.getInt("member_pin"),
+                    tmpMemberObj.getInt("credit_points"),
+                    ordersID);
+
+            members.add(tmpMember);
+        }
+    }
+
+    //***************************************************************************************
     public static void parseProductInventory() throws IOException {
 
         String jsonString = Files.readString(Path.of(productPath), StandardCharsets.US_ASCII);
