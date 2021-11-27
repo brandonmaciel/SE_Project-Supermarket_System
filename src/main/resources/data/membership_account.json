@@ -4,27 +4,153 @@
     "phone_num": "(806) 123-4567",
     "member_pin": 1234,
     "credit_points": 25,
-    "orders_id": [1,5]
+    "orders": [
+      {
+        "order_id": 1,
+        "order_date": "11/10/2021",
+        "order_time": "9:10am",
+        "total": 7.45,
+        "total_tax": 0.57,
+        "processed": false,
+        "items": [
+          {
+            "item_id": 75,
+            "item_name": "jalapeno",
+            "item_description": "Premium, spicy hot, jalapeno imported from Mexico.",
+            "discount": "No discount.",
+            "item_weight": 0.05,
+            "item_price": 0.19,
+            "quantity": 10
+          },
+          {
+            "item_id": 55,
+            "item_name": "rice",
+            "item_description": "White rice from Japan.",
+            "discount": "Price is now $2.49 ($0.50 off).",
+            "item_weight": 1.5,
+            "item_price": 2.49,
+            "quantity": 2
+          }
+        ]
+      },
+      {
+        "order_id": 5,
+        "order_date": "11/19/2021",
+        "order_time": "8:15pm",
+        "total": 41.60,
+        "total_tax": 3.17,
+        "processed": false,
+        "items": [
+          {
+            "item_id": 85,
+            "item_name": "pasta",
+            "item_description": "Whole wheat pasta.",
+            "discount": "Price is now $5.49 ($0.50 off).",
+            "item_weight": 0.3,
+            "item_price": 5.49,
+            "quantity": 7
+          }
+        ]
+      }
+    ]
   },
   {
     "member_name": "Isaac Ling",
     "phone_num": "(806) 321-7654",
     "member_pin": 4200,
     "credit_points": 215,
-    "orders_id": [2]
+    "orders": [
+      {
+        "order_id": 2,
+        "order_date": "11/10/2021",
+        "order_time": "11:45am",
+        "total": 18.77,
+        "total_tax": 1.43,
+        "processed": false,
+        "items": [
+          {
+            "item_id": 45,
+            "item_name": "milk",
+            "item_description": "2% Reduced Fat Milk.",
+            "discount": "No discount.",
+            "item_weight": 2.0,
+            "item_price": 3.49,
+            "quantity": 2
+          },
+          {
+            "item_id": 12,
+            "item_name": "bread",
+            "item_description": "Whole wheat bread.",
+            "discount": "No discount.",
+            "item_weight": 1.0,
+            "item_price": 2.79,
+            "quantity": 3
+          },
+          {
+            "item_id": 28,
+            "item_name": "eggs",
+            "item_description": "Non-gmo eggs, chickens are cage-free.",
+            "discount": "No discount.",
+            "item_weight": 2.0,
+            "item_price": 1.99,
+            "quantity": 1
+          }
+        ]
+      }
+    ]
   },
   {
     "member_name": "Jakob Lee",
     "phone_num": "(806) 765-4321",
     "member_pin": 1234,
     "credit_points": 10,
-    "orders_id": [3]
+    "orders": [
+      {
+        "order_id": 3,
+        "order_date": "11/15/2021",
+        "order_time": "4:10pm",
+        "total": 42.19,
+        "total_tax": 3.22,
+        "processed": false,
+        "items": [
+          {
+            "item_id": 35,
+            "item_name": "beef",
+            "item_description": "Our cows are non-gmo and are treated humanely.",
+            "discount": "No discount.",
+            "item_weight": 7.5,
+            "item_price": 12.99,
+            "quantity": 3
+          }
+        ]
+      }
+    ]
   },
   {
     "member_name": "Jeny Henny",
     "phone_num": "(806) 567-1234",
     "member_pin": 1999,
     "credit_points": 22,
-    "orders_id": [4]
+    "orders": [
+      {
+        "order_id": 4,
+        "order_date": "11/18/2021",
+        "order_time": "2:35pm",
+        "total": 34.10,
+        "total_tax": 2.60,
+        "processed": false,
+        "items": [
+          {
+            "item_id": 90,
+            "item_name": "avocado",
+            "item_description": "Avocados from Mexico.",
+            "discount": "No discount.",
+            "item_weight": 0.15,
+            "item_price": 0.70,
+            "quantity": 45
+          }
+        ]
+      }
+    ]
   }
 ]

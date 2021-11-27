@@ -1,16 +1,18 @@
 package com.example.se_projectsupermarket_system;
 
+import java.util.List;
+
 public class MembersAccount {
 
     private String name;
     private String phone_num;
     private int pin;
     private int credit_points;
-    private Orders orders;
+    private List<Orders> orders;
 
 
     public MembersAccount(String customer_name, String customer_phone_num, int customer_pin,
-                          int customer_points, Orders customer_orders) {
+                          int customer_points, List<Orders> customer_orders) {
         name = customer_name;
         phone_num = customer_phone_num;
         pin = customer_pin;
@@ -50,11 +52,11 @@ public class MembersAccount {
         this.credit_points = credit_points;
     }
 
-    public Orders getOrders() {
+    public List<Orders> getOrders() {
         return orders;
     }
 
-    public void setOrders(Orders orders) {
+    public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
 }
