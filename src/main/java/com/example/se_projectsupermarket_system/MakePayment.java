@@ -19,9 +19,7 @@ public class MakePayment extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-
         Data.parseFiles();
-
         launch();
     }
 }

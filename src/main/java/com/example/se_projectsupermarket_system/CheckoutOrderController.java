@@ -1,5 +1,9 @@
 package com.example.se_projectsupermarket_system;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,7 +31,7 @@ public class CheckoutOrderController {
     private List<OrderItem> tmpOrderItems = new ArrayList<>();
 
 
-
+    private boolean firstItemScan = false;
     private double OrderSubTotal = 0.00;
     private double OrderTotalTax;
     private double OrderTotal;
@@ -124,7 +128,7 @@ public class CheckoutOrderController {
 
     //***************************************************************************************
     @FXML
-    protected void onItemID_click() throws URISyntaxException {
+    protected void onItemID_click() throws URISyntaxException, IOException {
 
         boolean valid = false;
         for (Item product: productList) {
@@ -191,6 +195,19 @@ public class CheckoutOrderController {
                 }
 
                 tempProduct = product;
+
+                //Manage Member's Account Window
+                if(firstItemScan == false){
+                    firstItemScan = true;
+
+                    //Pop-Up window for account on first item scan
+                    Stage ACCstage = new Stage();
+                    FXMLLoader FxmlLoader = new FXMLLoader(HelloApplication.class.getResource("manageAccount_view.fxml"));
+                    Scene ACCscene = new Scene(FxmlLoader.load(), 500, 400);
+                    ACCstage.setTitle("Manage Member's Account");
+                    ACCstage.setScene(ACCscene);
+                    ACCstage.show();
+                }
             }
         }
 
@@ -223,7 +240,6 @@ public class CheckoutOrderController {
 
         }
         */
-
 
     }
 
@@ -421,7 +437,10 @@ public class CheckoutOrderController {
 
 
 
-
+    //***************************************************************************************
+    public double getTotalPrice(){
+        return OrderTotal;
+    }
 
 
     //***************************************************************************************
@@ -437,11 +456,14 @@ public class CheckoutOrderController {
         }else{
 
             //Erase Locally data for next checkout order
+            firstItemScan = false;
+            paymentReady = false;
             tmpOrderItems.clear();
             OrderTotal = 0.00;
             OrderTotalTax = 0.00;
             OrderSubTotal = 0.00;
-            paymentReady = false;
+            OrderCompleteOverlay.setVisible(false);
+
         }
         // get a handle to the stage
 

@@ -19,10 +19,9 @@ public class CheckoutOrder extends Application {
         stage.show();
     }
 
+
     public static void main(String[] args) throws IOException{
         Data.parseFiles();
-
-
         launch();
     }
 }
