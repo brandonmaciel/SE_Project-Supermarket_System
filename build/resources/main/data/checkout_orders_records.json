@@ -188,5 +188,70 @@
       "item_description": "Whole wheat pasta."
     }
   ]
+},
+{
+  "order_date": "11/28/2021",
+  "processed": false,
+  "total": 33.99,
+  "order_time": "13:00",
+  "total_tax": 2.59,
+  "order_id": 8,
+  "items": [
+    {
+      "item_weight": 1,
+      "quantity": 10,
+      "item_id": 12,
+      "item_price": 2.79,
+      "discount": "No discount.",
+      "item_name": "bread",
+      "item_description": "Whole wheat bread."
+    },
+    {
+      "item_weight": 0.15,
+      "quantity": 5,
+      "item_id": 90,
+      "item_price": 0.7,
+      "discount": "No discount.",
+      "item_name": "avocado",
+      "item_description": "Avocados from Mexico."
+    }
+  ]
+},
+{
+  "order_date": "11/28/2021",
+  "processed": false,
+  "total": 1225.01,
+  "order_time": "13:02",
+  "total_tax": 93.36,
+  "order_id": 9,
+  "items": [
+    {
+      "item_weight": 15,
+      "quantity": 1,
+      "item_id": 35,
+      "item_price": 12.99,
+      "discount": "No discount.",
+      "item_name": "beef",
+      "item_description": "Our cows are non-gmo and are treated humanely."
+    },
+    {
+      "item_weight": 10,
+      "quantity": 1,
+      "item_id": 34,
+      "item_price": 4.99,
+      "discount": "Price is now $4.99 ($1 off).",
+      "item_name": "chicken",
+      "item_description": "Our chickens are non-gmo and are treated humanely."
+    },
+    {
+      "item_weight": 0.3,
+      "quantity": 200,
+      "item_id": 85,
+      "item_price": 5.49,
+      "discount": "Price is now $5.49 ($0.50 off).",
+      "item_name": "pasta",
+      "item_description": "Whole wheat pasta."
+    }
+  ]
 }
 ]
