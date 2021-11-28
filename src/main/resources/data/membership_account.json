@@ -1,30 +1,41 @@
 [
-  {
-    "member_name": "Bruno Gemini",
-    "phone_num": "(806) 123-4567",
-    "member_pin": 1234,
-    "credit_points": 25,
-    "orders_id": [1,5]
-  },
-  {
-    "member_name": "Isaac Ling",
-    "phone_num": "(806) 321-7654",
-    "member_pin": 4200,
-    "credit_points": 215,
-    "orders_id": [2]
-  },
-  {
-    "member_name": "Jakob Lee",
-    "phone_num": "(806) 765-4321",
-    "member_pin": 1234,
-    "credit_points": 10,
-    "orders_id": [3]
-  },
-  {
-    "member_name": "Jeny Henny",
-    "phone_num": "(806) 567-1234",
-    "member_pin": 1999,
-    "credit_points": 22,
-    "orders_id": [4]
-  }
+ {
+  "credit_points": 33,
+  "orders_id": [
+    1,
+    5,
+    6
+  ],
+  "member_pin": 1234,
+  "phone_num": "(806) 123-4567",
+  "member_name": "Bruno Gemini"
+},
+{
+  "credit_points": 215,
+  "orders_id": [2],
+  "member_pin": 4200,
+  "phone_num": "(806) 321-7654",
+  "member_name": "Isaac Ling"
+},
+{
+  "credit_points": 10,
+  "orders_id": [3],
+  "member_pin": 1234,
+  "phone_num": "(806) 765-4321",
+  "member_name": "Jakob Lee"
+},
+{
+  "credit_points": 22,
+  "orders_id": [4],
+  "member_pin": 1999,
+  "phone_num": "(806) 567-1234",
+  "member_name": "Jeny Henny"
+},
+{
+  "credit_points": 13,
+  "orders_id": [7],
+  "member_pin": 6969,
+  "phone_num": "(254) 334-8054",
+  "member_name": "Gabe the Babe"
+}
 ]
