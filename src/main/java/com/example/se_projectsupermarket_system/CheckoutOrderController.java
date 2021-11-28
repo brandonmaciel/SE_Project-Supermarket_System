@@ -306,6 +306,26 @@ public class CheckoutOrderController {
                                         "\n\t"+tempProduct.getDiscount());
         }
 
+
+        //Removing item quantity from stock (Data.items)
+        for(int i = 0; i < Data.items.size(); i++){
+            if(tempProduct.getId() == Data.items.get(i).getId()){
+
+                if(tempProduct.getBulk() == true){
+                    int newQuantity = (Data.items.get(i).getQuantity() - 1);
+                    Data.items.get(i).setQuantity(newQuantity);
+                    System.out.println(newQuantity);
+                }else{
+                    int newQuantity = (Data.items.get(i).getQuantity() - ItemQuantity);
+                    Data.items.get(i).setQuantity(newQuantity);
+                    System.out.println(newQuantity);
+                }
+
+                break;
+            }
+        }
+
+
         //Setting Our Order Summary Labels
         OrderSubTotal = OrderSubTotal + ItemCurrentTotal_value;
         OrderTotalTax = (OrderSubTotal * 1.0825) - OrderSubTotal;
@@ -382,7 +402,8 @@ public class CheckoutOrderController {
         DateTimeFormatter Date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DateTimeFormatter Time = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
-        NumberFormat doubleFormatter = new DecimalFormat("#,000.00");
+
+
 
 
         List<OrderItem> clonedOrderItems = new ArrayList<OrderItem>(tmpOrderItems);
@@ -390,8 +411,8 @@ public class CheckoutOrderController {
                 currentOrderID,
                 Date.format(now),
                 Time.format(now),
-                Double.valueOf( doubleFormatter.format(OrderTotal) ),
-                Double.valueOf( doubleFormatter.format(OrderTotalTax) ),
+                ( Math.floor(100*OrderTotal) / 100 ),
+                ( Math.floor(100*OrderTotalTax) / 100 ),
                 false,
                 clonedOrderItems
         );
@@ -510,11 +531,13 @@ public class CheckoutOrderController {
 
             OrderCompleteOverlay.setVisible(false);
             PaymentNotReady.setVisible(false);
+            PaymentNotReady.setText("TOTAL must be calculated first!");
+            PaymentNotReady.setTextFill(Color.RED);
 
             //Set UI for next checkout order
             CustomerOrderReceipt.clear();
             CustomerDisplay.setText("...");
-            CashRegisterDisplay.setText("Waiting for Item-ID...");
+            CashRegisterDisplay.setText("TILL is closed\nWaiting for Item-ID...");
 
 
             EnteredItemID.clear();
@@ -531,6 +554,7 @@ public class CheckoutOrderController {
             WeightSelected.setText("Weight Selected - ");
             CurrentCustomer.setText("Current Customer - ");
 
+            //Hide any product showcase
             breadImg.setVisible(false);
             alfredoSauceImg.setVisible(false);
             eggsImg.setVisible(false);

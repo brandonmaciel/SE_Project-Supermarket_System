@@ -20,6 +20,7 @@ public class Data {
 
     static List<Bank> bank = new ArrayList<>();
     static List<Orders> orders = new ArrayList<>();
+    static List<inventory_orders> inventoryOrders = new ArrayList<>();
     static List<MembersAccount> members = new ArrayList<>();
     static List<Item> items = new ArrayList<>();
 
@@ -29,6 +30,7 @@ public class Data {
     public static void parseFiles() throws IOException {
         parseBankJSON();
         parseCheckoutOrders();
+        parseInventoryOrdersJSON();
         parseMembershipAccounts();
         parseProductInventory();
 
@@ -102,6 +104,28 @@ public class Data {
                     orderItems);
 
             orders.add(tmpOrder);
+        }
+    }
+
+    //***************************************************************************************
+    public static void parseInventoryOrdersJSON() throws IOException {
+
+        String jsonString = Files.readString(Path.of(inventoryPath), StandardCharsets.US_ASCII);
+        JSONArray inventoryOrdersArray = new JSONArray(jsonString);
+
+        for(int i = 0; i < inventoryOrdersArray.length(); i++){
+
+            JSONObject tmpObj = inventoryOrdersArray.getJSONObject(i);
+
+            inventory_orders tmpOrder = new inventory_orders(
+                    tmpObj.getString("message"),
+                    tmpObj.getString("order_date"),
+                    tmpObj.getInt("item_id"),
+                    tmpObj.getInt("quantity_ordered")
+            );
+
+
+            inventoryOrders.add(tmpOrder);
         }
     }
 

@@ -1,12 +1,19 @@
 package com.example.se_projectsupermarket_system;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MakePaymentController {
@@ -22,6 +29,14 @@ public class MakePaymentController {
 
     @FXML
     private TextArea console;
+    @FXML
+    private TextArea inventoryMessages;
+    @FXML
+    private Pane inventoryPane;
+    @FXML
+    private Button OKshutdownButton;
+
+
 
     @FXML
     protected void onCashClick() {
@@ -182,17 +197,64 @@ public class MakePaymentController {
 
     //********************************************************
     @FXML
-    protected void onShutDownClick(){
+    protected void onShutDownOKClick() throws IOException {
 
-        //Pop-Up window for Inventory Order Messages Window
-        //Stage PaymentStage = new Stage();
-        //FXMLLoader FxmlLoader = new FXMLLoader(HelloApplication.class.getResource("cashier_view.fxml"));
-       // Scene PaymentScene = new Scene(FxmlLoader.load(), 820, 740);
-       // PaymentStage.setTitle("Cashier View");
-       // PaymentStage.setScene(PaymentScene);
-       // PaymentStage.show();
+
+        //FOR EVERY object in DATA class; write them over the equal JSON file
+
 
         //Close Application
+        Platform.exit();
+        System.exit(0);
+    }
+
+    //********************************************************
+
+    @FXML
+    protected void OKhover(){
+        OKshutdownButton.setFont(new Font("Segoe UI Semibold",13));
+    }
+    @FXML
+    protected void OKhoverExit(){
+        OKshutdownButton.setFont(new Font("Segoe UI Semibold",11));
+    }
+    //********************************************************
+
+    public void ShutDown_calcInventoryMessage(){
+
+        inventoryPane.setVisible(true);
+
+        //For Formatting Date
+        DateTimeFormatter Date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+
+        // Send/store inventory orders for product restock
+        for(int i = 0; i < Data.items.size(); i++){
+
+            // If product stock < threshold
+            // Order enough quantity to bring stock to (threshold value + 50)
+            if(Data.items.get(i).getQuantity() < Data.items.get(i).getThreshold() ){
+
+                int quantity_toOrder = (Data.items.get(i).getThreshold()+50) -Data.items.get(i).getQuantity();
+                String tmpMessage = "Item "+Data.items.get(i).getId()+" - "+Data.items.get(i).getName()+", is below threshold.";
+
+                inventory_orders tmpOrder = new inventory_orders(
+                        tmpMessage,
+                        Date.format(now),
+                        Data.items.get(i).getId(),
+                        quantity_toOrder
+                );
+
+                Data.inventoryOrders.add(tmpOrder); //Adding to inventory orders in data object
+
+                //Add to text area
+                inventoryMessages.appendText(
+                        tmpMessage+"\n\t"+Date.format(now)+"\n\tQuantity ordering - "+String.valueOf(quantity_toOrder)+"\n\n"
+                );
+                System.out.println(tmpMessage);
+
+            }
+        }
 
     }
 }
