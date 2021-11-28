@@ -86,7 +86,7 @@ public class Data {
                         tmpItemObj.getString("item_description"),
                         tmpItemObj.getString("discount"),
                         tmpItemObj.getDouble("item_weight"),
-                        tmpItemObj.getInt("item_price"),
+                        tmpItemObj.getDouble("item_price"),
                         tmpItemObj.getInt("quantity"));
 
                 orderItems.add(tmpItem);

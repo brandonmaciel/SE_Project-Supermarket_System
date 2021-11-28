@@ -33,6 +33,7 @@ public class CheckoutOrderController {
     private List<OrderItem> tmpOrderItems = new ArrayList<>();
 
 
+
     private boolean firstItemScan = false;
     private double OrderSubTotal = 0.00;
     private double OrderTotalTax;
@@ -384,6 +385,7 @@ public class CheckoutOrderController {
         NumberFormat doubleFormatter = new DecimalFormat("#,000.00");
 
 
+        List<OrderItem> clonedOrderItems = new ArrayList<OrderItem>(tmpOrderItems);
         tmpOrder = new Orders(
                 currentOrderID,
                 Date.format(now),
@@ -391,13 +393,13 @@ public class CheckoutOrderController {
                 Double.valueOf( doubleFormatter.format(OrderTotal) ),
                 Double.valueOf( doubleFormatter.format(OrderTotalTax) ),
                 false,
-                tmpOrderItems
+                clonedOrderItems
         );
 
         Data.orders.add(tmpOrder);
 
         //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
-
+        /*
         for(Orders orders: Data.orders){
             CustomerOrderReceipt.appendText("\n****************************** ORDER #: ");
             CustomerOrderReceipt.appendText(orders.getId() +"\n");
@@ -417,6 +419,8 @@ public class CheckoutOrderController {
                 CustomerOrderReceipt.appendText("\n\t"+ items.getQuantity());
             }
         }
+        */
+
 
 
 
@@ -478,6 +482,12 @@ public class CheckoutOrderController {
 
 
 
+
+
+
+
+
+
     //***************************************************************************************
     //Used to transition from CheckoutOrder to MakePayment
     @FXML
@@ -497,7 +507,42 @@ public class CheckoutOrderController {
             OrderTotal = 0.00;
             OrderTotalTax = 0.00;
             OrderSubTotal = 0.00;
+
             OrderCompleteOverlay.setVisible(false);
+            PaymentNotReady.setVisible(false);
+
+            //Set UI for next checkout order
+            CustomerOrderReceipt.clear();
+            CustomerDisplay.setText("...");
+            CashRegisterDisplay.setText("Waiting for Item-ID...");
+
+
+            EnteredItemID.clear();
+            EnteredItemQuantity.clear();
+            EnteredBulkWeight.clear();
+
+            subTotal.setText("$ 0.00");
+            totalTax.setText("$ 0.00");
+            orderTotal.setText("$ 0.00");
+            ItemCurrentTotal.setText("$ 0.00");
+            ItemDescription.setText("...");
+            ItemName.setText("Item Name");
+            QuantitySelected.setText("Quantity Selected - ");
+            WeightSelected.setText("Weight Selected - ");
+            CurrentCustomer.setText("Current Customer - ");
+
+            breadImg.setVisible(false);
+            alfredoSauceImg.setVisible(false);
+            eggsImg.setVisible(false);
+            chickenImg.setVisible(false);
+            beefImg.setVisible(false);
+            milkImg.setVisible(false);
+            riceImg.setVisible(false);
+            flourImg.setVisible(false);
+            jalapenoImg.setVisible(false);
+            pastaImg.setVisible(false);
+            avocadoImg.setVisible(false);
+
 
 
             //Pop-Up window for Payment Window
@@ -508,15 +553,5 @@ public class CheckoutOrderController {
             PaymentStage.setScene(PaymentScene);
             PaymentStage.show();
         }
-        // get a handle to the stage
-
-        //Stage stage = (Stage) MakePaymentButton.getScene().getWindow();
-        //Stage new_stage = (Stage) MakePaymentButton.getScene().getWindow();
-        // Transition to Make Payment Scene
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("cashier_view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 820, 740);
-        //stage.setTitle("Cashier View");
-        //stage.setScene(scene);
-        //stage.show();
     }
 }

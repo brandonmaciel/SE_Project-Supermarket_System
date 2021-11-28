@@ -18,5 +18,7 @@
     <Label layoutX="30.0" layoutY="87.0" text="Process Order" />
     <Label layoutX="30.0" layoutY="204.0" text="Payment Method" />
     <Label layoutX="35.0" layoutY="369.0" text="Complete Order" />
+   <Button alignment="CENTER" layoutX="33.0" layoutY="630.0" mnemonicParsing="false" onAction="#onCheckoutNextCustomerClick" prefHeight="51.0" prefWidth="160.0" text="Checkout Next Customer" textAlignment="CENTER" />
+   <Button alignment="CENTER" layoutX="204.0" layoutY="630.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="160.0" text="Shutdown System for the Night" textAlignment="CENTER" wrapText="true" />
 
 </AnchorPane>
