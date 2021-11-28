@@ -22,7 +22,7 @@
             <DropShadow />
          </effect></Button>
       <TextField fx:id="EnteredItemID" alignment="CENTER" layoutX="27.0" layoutY="124.0" prefHeight="28.0" prefWidth="123.0" promptText="Enter Item's ID" styleClass="transparent" stylesheets="@../../../styling/style.css" />
-      <Button fx:id="TOTAL" alignment="TOP_CENTER" layoutX="309.0" layoutY="557.0" mnemonicParsing="false" onAction="#onTOTAL_click" onMouseEntered="#TOTALhover" onMouseExited="#TOTALhoverExit" prefHeight="27.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="TOTAL">
+      <Button fx:id="TOTAL" alignment="CENTER" layoutX="309.0" layoutY="557.0" mnemonicParsing="false" onAction="#onTOTAL_click" onMouseEntered="#TOTALhover" onMouseExited="#TOTALhoverExit" prefHeight="27.0" prefWidth="144.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="TOTAL">
          <font>
             <Font name="Segoe UI Semibold" size="17.0" />
          </font>
@@ -30,7 +30,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="MakePaymentButton" layoutX="303.0" layoutY="651.0" mnemonicParsing="false" onAction="#MakePaymentButtonAction" onMouseEntered="#MakePaymentHover" onMouseExited="#MakePaymentHoverExit" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Make Payment">
+      <Button fx:id="MakePaymentButton" alignment="CENTER" layoutX="303.0" layoutY="651.0" mnemonicParsing="false" onAction="#MakePaymentButtonAction" onMouseEntered="#MakePaymentHover" onMouseExited="#MakePaymentHoverExit" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Make Payment">
          <font>
             <Font name="Segoe UI Semibold" size="17.0" />
          </font>
@@ -200,7 +200,7 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="EnteredBulkWeight" layoutX="1064.0" layoutY="268.0" onAction="#onSetWeight_click" prefHeight="38.0" prefWidth="114.0" promptText="Enter Weight. . ." styleClass="transparent" stylesheets="@../../../styling/style.css" visible="false">
+      <TextField fx:id="EnteredBulkWeight" layoutX="1064.0" layoutY="268.0" onAction="#onSetWeight_click" prefHeight="38.0" prefWidth="114.0" promptText="Enter Weight. . ." styleClass="transparent_White" stylesheets="@../../../styling/style.css" visible="false">
          <font>
             <Font name="Segoe UI Semilight" size="12.0" />
          </font>
@@ -236,5 +236,10 @@
             <Image url="@../../../img/DoneOrderOverlay_v2.png" />
          </image>
       </ImageView>
+      <Label fx:id="CurrentCustomer" layoutX="1031.0" layoutY="649.0" prefHeight="71.0" prefWidth="243.0" text="Current Customer - " textFill="#808080">
+         <font>
+            <Font name="Segoe UI Light" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

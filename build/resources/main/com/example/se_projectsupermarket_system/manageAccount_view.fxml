@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="400.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="400.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_projectsupermarket_system.ManageMembershipController">
    <children>
       <Pane fx:id="pane_VerifyAccount" prefHeight="400.0" prefWidth="500.0">
          <children>
@@ -15,19 +15,19 @@
                   <Image url="@../../../img/VerifyMember.png" />
                </image>
             </ImageView>
-            <TextField fx:id="VA_enteredPhoneNum" layoutX="136.0" layoutY="115.0" prefHeight="45.0" prefWidth="263.0" promptText="Enter Phone Number..." styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
-            <PasswordField fx:id="VA_enteredPin" layoutX="138.0" layoutY="172.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Member's Pin..." styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
-            <Button fx:id="VA_verify" layoutX="99.0" layoutY="270.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Verify" textAlignment="CENTER">
+            <TextField fx:id="VA_enteredPhoneNum" layoutX="136.0" layoutY="115.0" prefHeight="45.0" prefWidth="263.0" promptText="Enter Phone Number...        &quot;(###) ###-####&quot;" styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
+            <PasswordField fx:id="VA_enteredPin" layoutX="138.0" layoutY="172.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Member's Pin...        &quot;####&quot;" styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
+            <Button fx:id="VA_verify" alignment="CENTER" layoutX="99.0" layoutY="270.0" mnemonicParsing="false" onAction="#onVerify_click" onMouseEntered="#verifyHover" onMouseExited="#verifyExit" prefHeight="53.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Verify" textAlignment="CENTER">
                <font>
                   <Font name="Segoe UI Semibold" size="23.0" />
                </font>
             </Button>
-            <Button fx:id="VA_createAccount" layoutX="263.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Create Account" textFill="WHITE">
+            <Button fx:id="VA_createAccount" alignment="CENTER" layoutX="263.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCreateAccount_click" onMouseEntered="#createAccountHover" onMouseExited="#createAccountExit" prefHeight="31.0" prefWidth="133.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Create Account" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Light" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="VA_cancel" layoutX="20.0" layoutY="2.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Cancel" textFill="WHITE" underline="true">
+            <Button fx:id="VA_cancel" alignment="CENTER" layoutX="20.0" layoutY="2.0" mnemonicParsing="false" onAction="#onCancel_click" onMouseEntered="#cancelHover" onMouseExited="#cancelHoverExit" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Cancel" textFill="WHITE" underline="true">
                <font>
                   <Font name="Segoe UI Light" size="12.0" />
                </font>
@@ -77,7 +77,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Button fx:id="VD_closeWindow" layoutX="100.0" layoutY="274.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Close Window">
+            <Button fx:id="VD_closeWindow" alignment="CENTER" layoutX="100.0" layoutY="274.0" mnemonicParsing="false" onAction="#onCloseWindow_click" onMouseEntered="#closeWindowHover" onMouseExited="#closeWindowExit" prefHeight="45.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Close Window">
                <font>
                   <Font name="Segoe UI Semibold" size="23.0" />
                </font>
@@ -96,10 +96,10 @@
                   <Image url="@../../../img/CreateAccount.png" />
                </image>
             </ImageView>
-            <PasswordField fx:id="CA_enteredPin" layoutX="137.0" layoutY="210.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Pin..." styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
-            <TextField fx:id="CA_enteredPhoneNum" layoutX="137.0" layoutY="148.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Phone #..." styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
+            <PasswordField fx:id="CA_enteredPin" layoutX="137.0" layoutY="210.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Member's Pin...       &quot;####&quot;" styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
+            <TextField fx:id="CA_enteredPhoneNum" layoutX="137.0" layoutY="148.0" prefHeight="53.0" prefWidth="263.0" promptText="Enter Phone Number...       &quot;(###) ###-####&quot;" styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
             <TextField fx:id="CA_enteredName" layoutX="140.0" layoutY="88.0" prefHeight="53.0" prefWidth="257.0" promptText="Enter Member's Name..." styleClass="transparent_White" stylesheets="@../../../styling/style.css" />
-            <Button fx:id="CA_create" layoutX="100.0" layoutY="271.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Create">
+            <Button fx:id="CA_create" alignment="CENTER" layoutX="100.0" layoutY="271.0" mnemonicParsing="false" onAction="#onCreate_click" onMouseEntered="#createHover" onMouseExited="#createExit" prefHeight="50.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Create">
                <font>
                   <Font name="Segoe UI Semibold" size="23.0" />
                </font>
@@ -133,7 +133,7 @@
                   <Font name="Segoe UI Light" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="CD_closeWindow" layoutX="99.0" layoutY="271.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Close Window">
+            <Button fx:id="CD_closeWindow" alignment="CENTER" layoutX="99.0" layoutY="271.0" mnemonicParsing="false" onAction="#onCloseWindow_click" onMouseEntered="#closeWindowHover" onMouseExited="#closeWindowExit" prefHeight="38.0" prefWidth="302.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Close Window">
                <font>
                   <Font name="Segoe UI Semibold" size="23.0" />
                </font>

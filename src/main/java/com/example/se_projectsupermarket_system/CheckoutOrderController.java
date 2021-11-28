@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -34,7 +36,7 @@ public class CheckoutOrderController {
     private boolean firstItemScan = false;
     private double OrderSubTotal = 0.00;
     private double OrderTotalTax;
-    private double OrderTotal;
+    static double OrderTotal;       //Static
 
     private double ItemCurrentTotal_value;
     private int ItemQuantity;
@@ -73,6 +75,8 @@ public class CheckoutOrderController {
     private ImageView OrderCompleteOverlay;
     @FXML
     private Label PaymentNotReady;
+    @FXML
+    private Label CurrentCustomer;
 
 
     //Order Summary Labels
@@ -122,6 +126,7 @@ public class CheckoutOrderController {
     private TextArea CustomerOrderReceipt;
 
 
+
     private Item tempProduct = new Item(-1, "N/a", "N/a", "n/a",
             0, 0, 0, false, 0);
 
@@ -137,10 +142,10 @@ public class CheckoutOrderController {
                 valid = true;
                 //Do the following if Item-ID valid
                 ItemName.setText(product.getName());
-                ItemDescription.setText(product.getDescription()+"\n    Weight - "+product.getWeight()+"\n    Discount - "+product.getDiscount());
+                ItemDescription.setText(product.getDescription() + "\n    Weight - " + product.getWeight() + "\n    Discount - " + product.getDiscount());
                 ItemCurrentTotal.setText("$ " + product.getPrice());
 
-                if(product.getBulk() == true){
+                if (product.getBulk() == true) {
                     ItemBulk.setVisible(true);
                     SCALE.setVisible(true);
                     EnteredBulkWeight.setVisible(true);
@@ -149,7 +154,7 @@ public class CheckoutOrderController {
                     SetQuantity.setVisible(false);
                     EnteredItemQuantity.setVisible(false);
                     QuantitySelected.setVisible(false);
-                }else{
+                } else {
                     ItemBulk.setVisible(false);
                     SCALE.setVisible(false);
                     EnteredBulkWeight.setVisible(false);
@@ -197,7 +202,7 @@ public class CheckoutOrderController {
                 tempProduct = product;
 
                 //Manage Member's Account Window
-                if(firstItemScan == false){
+                if (firstItemScan == false) {
                     firstItemScan = true;
 
                     //Pop-Up window for account on first item scan
@@ -208,16 +213,21 @@ public class CheckoutOrderController {
                     ACCstage.setScene(ACCscene);
                     ACCstage.show();
                 }
+
+
+
+                break;
             }
         }
+
 
         //Else Item-ID is invalid
         if (!valid) {
             CustomerDisplay.setText("...");
-            CashRegisterDisplay.setText("Invalid Item ID - "+EnteredItemID.getText()+"\nEnter another identification number...");
+            CashRegisterDisplay.setText("Invalid Item ID - " + EnteredItemID.getText() + "\nEnter another identification number...");
         }
 
-        //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
+            //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
         /*
         for(Orders orders: Data.orders){
             CustomerOrderReceipt.appendText("\n****************************** ORDER #: ");
@@ -329,6 +339,18 @@ public class CheckoutOrderController {
         }
 
         tmpOrderItems.add(tmpItem);
+
+
+        //Setting our current customer label
+        for(MembersAccount member: Data.members){
+            if(member.getPin() == ManageMembershipController.member_pin && member.getPhone_num().contains(ManageMembershipController.member_phoneNum)) {
+                CurrentCustomer.setText("Current Customer - "+member.getName()+
+                                        "\nCredit Points - "+member.getCredit_points());
+                break;
+            }else{
+                CurrentCustomer.setText("Current Customer - No account associated.");
+            }
+        }
     }
 
     //***************************************************************************************
@@ -348,6 +370,7 @@ public class CheckoutOrderController {
 
         OrderCompleteOverlay.setVisible(true);
         PaymentNotReady.setVisible(true);
+        paymentReady = true;
         PaymentNotReady.setText("Ready For Payment!");
         PaymentNotReady.setTextFill(Color.GREEN);
 
@@ -358,13 +381,15 @@ public class CheckoutOrderController {
         DateTimeFormatter Date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DateTimeFormatter Time = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
+        NumberFormat doubleFormatter = new DecimalFormat("#,000.00");
+
 
         tmpOrder = new Orders(
                 currentOrderID,
                 Date.format(now),
                 Time.format(now),
-                OrderTotal,
-                OrderTotalTax,
+                Double.valueOf( doubleFormatter.format(OrderTotal) ),
+                Double.valueOf( doubleFormatter.format(OrderTotalTax) ),
                 false,
                 tmpOrderItems
         );
@@ -372,7 +397,7 @@ public class CheckoutOrderController {
         Data.orders.add(tmpOrder);
 
         //FOR CHECKING TO SEE IF SUCCESSFULLY ADDED ORDER
-        /*
+
         for(Orders orders: Data.orders){
             CustomerOrderReceipt.appendText("\n****************************** ORDER #: ");
             CustomerOrderReceipt.appendText(orders.getId() +"\n");
@@ -393,7 +418,23 @@ public class CheckoutOrderController {
             }
         }
 
-         */
+
+
+        //Add credit points for Verified Members
+        ManageMembershipController.addCreditPoints();
+
+        //Add Current Order ID to Data.members; current Member's orders_id integer array;
+        ManageMembershipController.addOrderID(currentOrderID);
+
+        //Setting our current customer label with calculated new added points
+        for(MembersAccount member: Data.members){
+            if(member.getPin() == ManageMembershipController.member_pin && member.getPhone_num().contains(ManageMembershipController.member_phoneNum)) {
+                CurrentCustomer.setText("Current Customer - "+member.getName()+
+                        "\nNew Credit Points - "+member.getCredit_points() +
+                        "\nPoints Added - "+String.valueOf(Math.round( OrderTotal * 0.10)) );
+                break;
+            }
+        }
     }
 
 
@@ -438,12 +479,6 @@ public class CheckoutOrderController {
 
 
     //***************************************************************************************
-    public double getTotalPrice(){
-        return OrderTotal;
-    }
-
-
-    //***************************************************************************************
     //Used to transition from CheckoutOrder to MakePayment
     @FXML
     private javafx.scene.control.Button MakePaymentButton;
@@ -464,6 +499,14 @@ public class CheckoutOrderController {
             OrderSubTotal = 0.00;
             OrderCompleteOverlay.setVisible(false);
 
+
+            //Pop-Up window for Payment Window
+            Stage PaymentStage = new Stage();
+            FXMLLoader FxmlLoader = new FXMLLoader(HelloApplication.class.getResource("cashier_view.fxml"));
+            Scene PaymentScene = new Scene(FxmlLoader.load(), 820, 740);
+            PaymentStage.setTitle("Cashier View");
+            PaymentStage.setScene(PaymentScene);
+            PaymentStage.show();
         }
         // get a handle to the stage
 
