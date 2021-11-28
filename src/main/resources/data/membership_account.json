@@ -1,10 +1,11 @@
 [
  {
-  "credit_points": 33,
+  "credit_points": 36,
   "orders_id": [
     1,
     5,
-    6
+    6,
+    8
   ],
   "member_pin": 1234,
   "phone_num": "(806) 123-4567",
@@ -37,5 +38,12 @@
   "member_pin": 6969,
   "phone_num": "(254) 334-8054",
   "member_name": "Gabe the Babe"
+},
+{
+  "credit_points": 122,
+  "orders_id": [9],
+  "member_pin": 1234,
+  "phone_num": "(254) 334-8054",
+  "member_name": "Gabe Coyote"
 }
 ]
