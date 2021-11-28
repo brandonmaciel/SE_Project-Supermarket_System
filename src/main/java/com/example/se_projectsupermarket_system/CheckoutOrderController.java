@@ -308,22 +308,8 @@ public class CheckoutOrderController {
 
 
         //Removing item quantity from stock (Data.items)
-        for(int i = 0; i < Data.items.size(); i++){
-            if(tempProduct.getId() == Data.items.get(i).getId()){
+        ManageStockLevel.removeQuantityItem(ItemQuantity, tempProduct.getId());
 
-                if(tempProduct.getBulk() == true){
-                    int newQuantity = (Data.items.get(i).getQuantity() - 1);
-                    Data.items.get(i).setQuantity(newQuantity);
-                    System.out.println(newQuantity);
-                }else{
-                    int newQuantity = (Data.items.get(i).getQuantity() - ItemQuantity);
-                    Data.items.get(i).setQuantity(newQuantity);
-                    System.out.println(newQuantity);
-                }
-
-                break;
-            }
-        }
 
 
         //Setting Our Order Summary Labels

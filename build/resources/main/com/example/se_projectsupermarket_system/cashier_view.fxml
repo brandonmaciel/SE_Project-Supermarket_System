@@ -34,7 +34,7 @@
             </effect>
          </ImageView>
          <TextArea fx:id="inventoryMessages" layoutX="182.0" layoutY="212.0" prefHeight="322.0" prefWidth="460.0" stylesheets="@../../../styling/textArea.css" />
-         <Button alignment="CENTER" layoutX="542.0" layoutY="168.0" mnemonicParsing="false" onAction="#onShutDownOKClick" onMouseEntered="#OKhover" onMouseExited="#OKhoverExit" prefHeight="33.0" prefWidth="100.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Ok: Shutdown">
+         <Button fx:id="OKshutdownButton" alignment="CENTER" layoutX="542.0" layoutY="168.0" mnemonicParsing="false" onAction="#onShutDownOKClick" onMouseEntered="#OKhover" onMouseExited="#OKhoverExit" prefHeight="33.0" prefWidth="100.0" styleClass="transparent" stylesheets="@../../../styling/style.css" text="Ok: Shutdown">
             <font>
                <Font name="Segoe UI Semibold" size="11.0" />
             </font>

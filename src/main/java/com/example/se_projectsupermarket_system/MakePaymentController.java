@@ -10,7 +10,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONString;
+import org.json.JSONWriter;
 
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -200,9 +206,7 @@ public class MakePaymentController {
     protected void onShutDownOKClick() throws IOException {
 
 
-        //FOR EVERY object in DATA class; write them over the equal JSON file
-
-
+        Data.writeJSONfiles();
         //Close Application
         Platform.exit();
         System.exit(0);
@@ -236,6 +240,7 @@ public class MakePaymentController {
             if(Data.items.get(i).getQuantity() < Data.items.get(i).getThreshold() ){
 
                 int quantity_toOrder = (Data.items.get(i).getThreshold()+50) -Data.items.get(i).getQuantity();
+                //System.out.print(quantity_toOrder);
                 String tmpMessage = "Item "+Data.items.get(i).getId()+" - "+Data.items.get(i).getName()+", is below threshold.";
 
                 inventory_orders tmpOrder = new inventory_orders(
@@ -246,8 +251,9 @@ public class MakePaymentController {
                 );
 
                 Data.inventoryOrders.add(tmpOrder); //Adding to inventory orders in data object
+                ManageStockLevel.addToItemStock(quantity_toOrder, i);       //Add items to products stock for index "i"
 
-                //Add to text area
+                //Add to text area of inventory messages pane
                 inventoryMessages.appendText(
                         tmpMessage+"\n\t"+Date.format(now)+"\n\tQuantity ordering - "+String.valueOf(quantity_toOrder)+"\n\n"
                 );
