@@ -194,10 +194,10 @@ public class Data {
     //****************************************************************************
     public static void writeJSONfiles() throws IOException{
         writeBankJSON();
-        // writeCheckoutOrders();
-        // writeInventoryOrdersJSON();
-        // writeMembershipAccounts();
-        // writeProductInventory();  //DONE
+        writeCheckoutOrders();
+        writeInventoryOrdersJSON();
+        writeMembershipAccounts();
+        writeProductInventory();
     }
 
     //****************************************************************************
@@ -243,7 +243,7 @@ public class Data {
 
 
         try{
-            FileWriter file = new FileWriter("src/main/resources/data/newCheckout_orders.json");
+            FileWriter file = new FileWriter(checkoutPath);
             file.write('[');
             file.write('\n'); file.write(' ');
             for(int i = 0; i < checkoutArray.length(); i++){
@@ -282,7 +282,7 @@ public class Data {
 
 
         try{
-            FileWriter file = new FileWriter("src/main/resources/data/new_messages.json");
+            FileWriter file = new FileWriter(inventoryPath);
             file.write('[');
             file.write('\n'); file.write(' ');
             for(int i = 0; i < inventoryMessagesArray.length(); i++){
@@ -323,7 +323,7 @@ public class Data {
 
 
         try{
-            FileWriter file = new FileWriter("src/main/resources/data/new_accounts.json");
+            FileWriter file = new FileWriter(membershipPath);
             file.write('[');
             file.write('\n'); file.write(' ');
             for(int i = 0; i < membersArray.length(); i++){
